@@ -152,77 +152,68 @@ const EventDashboard = () => {
         <Row> <Button variant="outline-secondary" size='lg'>Event Calander</Button></Row>
         </Col>
       </Row>
-      <Row style={{marginTop:'25px',marginBottom:'25px',backgroundColor:'ghostwhite' ,padding:'25px',borderRadius:'20px'}}>
-        <Col>
-        <Card
-      border="secondary"
-      style={{ width: '18rem', transition: 'transform .2s', transform: transformStyle5}}
-      onMouseEnter={() => { setTransformStyle5('scale(1.1)') }}
-      onMouseLeave={() => { setTransformStyle5('scale(1)') }}
-    >
-        <Card.Body>
-        <Card.Title style={{fontSize:'25px',color:'#ffc107',fontFamily:'Montserrat'}}>Confference</Card.Title>
-          <Card.Text>
-          <img src="images/confference.png" 
-        style={{width: '100%'}}
-         alt="events" />
-          </Card.Text>
-        </Card.Body>
-      </Card>
-
-        </Col>
-        <Col>
-        <Card
-      border="secondary"
-      style={{ width: '18rem', transition: 'transform .2s', transform: transformStyle6 }}
-      onMouseEnter={() => { setTransformStyle6('scale(1.1)') }}
-      onMouseLeave={() => { setTransformStyle6('scale(1)') }}
-    >
-        <Card.Body>
-        <Card.Title style={{fontSize:'12px',color:'#ffc107'}}>Confference</Card.Title>
-          <Card.Text>
-          <img src="images/confference.png" 
-        style={{width: '100%'}}
-         alt="events" />
-          </Card.Text>
-        </Card.Body>
-      </Card>
-        </Col>
-        <Col>
-        <Card
-      border="secondary"
-      style={{ width: '18rem', transition: 'transform .2s', transform: transformStyle7 }}
-      onMouseEnter={() => { setTransformStyle7('scale(1.1)') }}
-      onMouseLeave={() => { setTransformStyle7('scale(1)') }}
-    >
-        <Card.Body>
-        <Card.Title style={{fontSize:'12px',color:'#ffc107'}}>Confference</Card.Title>
-          <Card.Text>
-          <img src="images/confference.png" 
-        style={{width: '100%'}}
-         alt="events" />
-          </Card.Text>
-        </Card.Body>
-      </Card>
-        </Col>
-        <Col>
-        <Card
-      border="secondary"
-      style={{ width: '18rem', transition: 'transform .2s', transform: transformStyle8 }}
-      onMouseEnter={() => { setTransformStyle8('scale(1.1)') }}
-      onMouseLeave={() => { setTransformStyle8('scale(1)') }}
-    >
-        <Card.Body>
-        <Card.Title style={{fontSize:'12px',color:'#ffc107'}}>Confference</Card.Title>
-          <Card.Text>
-          <img src="images/confference.png" 
-        style={{width: '100%'}}
-         alt="events" />
-          </Card.Text>
-        </Card.Body>
-      </Card>
-        </Col>
-      </Row>
+      <Row style={{marginTop:'25px',marginBottom:'25px',display:'flex',flexDirection:'row',justifyContent:'flex-start',alignItems:'center'}}>
+    <Card style={{ width: '18rem',display: 'block',maxWidth: '480px',backgroundColor: 'ghostwhite',borderRadius: "1.75rem",padding:" .75rem",boxShadow: "0 16px 24px -12px rgba(black,0.15)",border:'none',marginRight:'50px',marginBottom:'50px',}}>
+      <Card.Img style={{textAlign : "center",borderRadius: "1.25rem",Container: "contents",
+		fit: "fill-box",
+		marginBottom: "1rem",
+		boxShadow: "0 16px 24px -12px rgba(black,0.15)"}} 
+        variant="top" src="images/calander.jpg" />
+      <Card.Body style={{display:'flex',flexDirection:'column',alignItems:'flex-start'}}>
+        <Card.Title>Card Title</Card.Title>
+        <Card.Text style={{textAlign:'left'}}>
+          Some quick example text to build on the card title and make up the
+          bulk of the card's content.
+        </Card.Text>
+        <Button style={{borderRadius:'1.25rem'}} variant="primary">View More</Button>
+      </Card.Body>
+    </Card>
+    <Card style={{ width: '18rem',display: 'block',maxWidth: '480px',backgroundColor: 'ghostwhite',borderRadius: "1.75rem",padding:" .75rem",boxShadow: "0 16px 24px -12px rgba(black,0.15)",border:'none',marginRight:'50px',marginBottom:'50px',}}>
+      <Card.Img style={{textAlign : "center",borderRadius: "1.25rem",Container: "contents",
+		fit: "fill-box",
+		marginBottom: "1rem",
+		boxShadow: "0 16px 24px -12px rgba(black,0.15)"}} 
+        variant="top" src="images/calander.jpg" />
+      <Card.Body style={{display:'flex',flexDirection:'column',alignItems:'flex-start'}}>
+        <Card.Title>Card Title</Card.Title>
+        <Card.Text style={{textAlign:'left'}}>
+          Some quick example text to build on the card title and make up the
+          bulk of the card's content.
+        </Card.Text>
+        <Button style={{borderRadius:'1.25rem'}} variant="primary">View More</Button>
+      </Card.Body>
+    </Card>
+    <Card style={{ width: '18rem',display: 'block',maxWidth: '480px',backgroundColor: 'ghostwhite',borderRadius: "1.75rem",padding:" .75rem",boxShadow: "0 16px 24px -12px rgba(black,0.15)",border:'none',marginRight:'50px',marginBottom:'50px',}}>
+      <Card.Img style={{textAlign : "center",borderRadius: "1.25rem",Container: "contents",
+		fit: "fill-box",
+		marginBottom: "1rem",
+		boxShadow: "0 16px 24px -12px rgba(black,0.15)"}} 
+        variant="top" src="images/calander.jpg" />
+      <Card.Body style={{display:'flex',flexDirection:'column',alignItems:'flex-start'}}>
+        <Card.Title>Card Title</Card.Title>
+        <Card.Text style={{textAlign:'left'}}>
+          Some quick example text to build on the card title and make up the
+          bulk of the card's content.
+        </Card.Text>
+        <Button style={{borderRadius:'1.25rem'}} variant="primary">View More</Button>
+      </Card.Body>
+    </Card>
+    <Card style={{ width: '18rem',display: 'block',maxWidth: '480px',backgroundColor: 'ghostwhite',borderRadius: "1.75rem",padding:" .75rem",boxShadow: "0 16px 24px -12px rgba(black,0.15)",border:'none',marginBottom:'50px',}}>
+      <Card.Img style={{textAlign : "center",borderRadius: "1.25rem",Container: "contents",
+		fit: "fill-box",
+		marginBottom: "1rem",
+		boxShadow: "0 16px 24px -12px rgba(black,0.15)"}} 
+        variant="top" src="images/calander.jpg" />
+      <Card.Body style={{display:'flex',flexDirection:'column',alignItems:'flex-start'}}>
+        <Card.Title>Card Title</Card.Title>
+        <Card.Text style={{textAlign:'left'}}>
+          Some quick example text to build on the card title and make up the
+          bulk of the card's content.
+        </Card.Text>
+        <Button style={{borderRadius:'1.25rem'}} variant="primary">View More</Button>
+      </Card.Body>
+    </Card>
+    </Row>
     </Container>
 
     </div>
