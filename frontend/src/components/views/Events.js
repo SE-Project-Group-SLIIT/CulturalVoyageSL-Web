@@ -59,7 +59,7 @@ const Events = () => {
                                     <input class="search_input" type="text" name="" placeholder="Search..."   required />
                                     <button 
                                     class="btn search_icon" 
-                                    type="submit" id="submit" name="submit" style={{marginLeft:'263px',marginTop:'-32px'}}> &nbsp;<FaSearch></FaSearch></button>
+                                    type="submit" id="submit" name="submit" style={{marginLeft:'263px',marginTop:'-32px'}}> &nbsp;w<FaSearch></FaSearch></button>
                                 </form>
                             </div>
                         </div>
