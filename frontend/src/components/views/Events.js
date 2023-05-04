@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState,useEffect } from 'react'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -7,9 +7,34 @@ import Button from 'react-bootstrap/Button';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import {FaSearch}  from "react-icons/fa";
-
+import { getAllEventsService } from '../services/eventService';
+import { useLocation, useHistory } from 'react-router-dom';
 
 const Events = () => {
+  const [eventsDetails, setEventsDetails] = useState([])
+
+  
+  let history = useHistory();
+  const getAllEvents=async() => {
+    let response = await getAllEventsService()
+    if (response.ok){
+      setEventsDetails(response.data.data)
+    }
+    console.log(">>>>",response);
+  }
+
+  const viewOne = async (data) => {
+    console.log(">>", data)
+    history.push({
+      pathname: '/eventSingle',
+      state: data
+    })
+  }
+
+  useEffect (() => {
+    getAllEvents()
+  },[])
+
   return (
     <div>
     <Container>
@@ -59,7 +84,7 @@ const Events = () => {
                                     <input class="search_input" type="text" name="" placeholder="Search..."   required />
                                     <button 
                                     class="btn search_icon" 
-                                    type="submit" id="submit" name="submit" style={{marginLeft:'263px',marginTop:'-32px'}}> &nbsp;w<FaSearch></FaSearch></button>
+                                    type="submit" id="submit" name="submit" style={{marginLeft:'263px',marginTop:'-32px'}}> &nbsp;<FaSearch></FaSearch></button>
                                 </form>
                             </div>
                         </div>
@@ -67,21 +92,28 @@ const Events = () => {
             </div>
     </Row>
     <Row style={{marginTop:'25px',marginBottom:'25px',display:'flex',flexDirection:'row',justifyContent:'flex-start',alignItems:'center'}}>
-    <Card style={{ width: '18rem',display: 'block',maxWidth: '480px',backgroundColor: 'ghostwhite',borderRadius: "1.75rem",padding:" .75rem",boxShadow: "0 16px 24px -12px rgba(black,0.15)",border:'none',marginRight:'50px',marginBottom:'50px',}}>
-      <Card.Img style={{textAlign : "center",borderRadius: "1.25rem",Container: "contents",
-		fit: "fill-box",
-		marginBottom: "1rem",
-		boxShadow: "0 16px 24px -12px rgba(black,0.15)"}} 
-        variant="top" src="images/calander.jpg" />
-      <Card.Body style={{display:'flex',flexDirection:'column',alignItems:'flex-start'}}>
-        <Card.Title>Card Title</Card.Title>
-        <Card.Text style={{textAlign:'left'}}>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <Button style={{borderRadius:'1.25rem'}} variant="primary">View More</Button>
-      </Card.Body>
-    </Card>
+    { eventsDetails.map((events)=>{
+      return(
+  
+        <Card style={{ width: '18rem',display: 'block',maxWidth: '480px',backgroundColor: 'ghostwhite',borderRadius: "1.75rem",padding:" .75rem",boxShadow: "0 16px 24px -12px rgba(black,0.15)",border:'none',marginRight:'50px',marginBottom:'50px',}} >
+          { console.log("events",events)}
+        <Card.Img style={{textAlign : "center",borderRadius: "1.25rem",Container: "contents",
+      fit: "fill-box",
+      marginBottom: "1rem",
+      boxShadow: "0 16px 24px -12px rgba(black,0.15)"}} 
+          variant="top" src={events.imageOne != 0 ? events.imageOne : "images/calander.jpg"} />
+        <Card.Body style={{display:'flex',flexDirection:'column',alignItems:'flex-start'}}>
+          <Card.Title>{events.eventName}</Card.Title>
+          <Card.Text style={{textAlign:'left'}}>
+           {events.eventDescription}
+          </Card.Text>
+          <Button style={{borderRadius:'1.25rem'}} variant="primary" onClick={() => { viewOne(events) }}>View More</Button>
+        </Card.Body>
+      </Card>
+      )
+    })
+   
+    }
     </Row>
     </Container>
     </div>

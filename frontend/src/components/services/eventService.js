@@ -18,3 +18,21 @@ console.log("eventRes",response);
     }
 
 }
+
+export const getAllEventsService = async () => {
+
+    try {
+        let response = await axios.get(BASE_URL + '/view');
+
+        return {
+            ok: true,
+            data: response.data
+        }
+    } catch (error) {
+        return {
+            ok: false,
+            error: error
+        }
+    }
+
+}

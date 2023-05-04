@@ -7,13 +7,16 @@ import Button from 'react-bootstrap/Button';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 
-const EventSingleView = () => {
+const EventSingleView = (props) => {
+  const [eventsDetails, setEventsDetails] = useState(props.history.location.state)
+
   return (
     <div>eventSingleView
        <Container>
        <Row>
         <Col>
-        <img src="images/Dash.jpg" 
+        <img src={eventsDetails.imageOne}
+        // "images/Dash.jpg" 
         style={{width: '100%',marginRight:'10px'}}
          alt="events" />
         </Col>
@@ -33,30 +36,32 @@ const EventSingleView = () => {
         </Row>
         <Row style={{height:'420px',backgroundColor:'ghostwhite',marginTop:'20px',marginBottom:'20px',borderRadius:'20px'}}>
           <Col >
-            <Row style={{height:'180px',backgroundColor:'pink',margin:'20px'}}> image 1</Row>
-            <Row style={{height:'180px',backgroundColor:"lightgreen" ,margin:'20px'}}> image 2</Row>
+            <Row style={{height:'180px',backgroundColor:'pink',margin:'20px'}}>  <img src={eventsDetails.imageTwo}
+        style={{marginRight:'10px',height:'180px'}}
+         alt="events" /></Row>
+            <Row style={{height:'180px',backgroundColor:"lightgreen" ,margin:'20px'}}><img src={eventsDetails.imageThree}
+        style={{marginRight:'10px',height:'180px'}} alt="events" /></Row>
           </Col>
           <Col>
           <hr></hr>
-            <Row style={{height:'180px',margin:'10px'}}><h2>Nuwara Perahara</h2>
-             <small>The Nuwara Perahera is a grand annual procession held in Sri Lanka, usually in the month of August, to pay homage to the sacred tooth relic of Lord Buddha housed in the Temple of the Tooth in Kandy. The procession features beautifully adorned elephants, traditional dancers, drummers, and fire performers, as well as various other cultural displays, attracting large crowds of both locals and tourists. 
-              The event lasts for 10 days and culminates in the final day's Esala Perahera, which is considered the most spectacular and significant event of the procession.
+            <Row style={{height:'180px',margin:'10px'}}><h2>{eventsDetails.eventName}</h2>
+             <small>{eventsDetails.eventDescription}
               </small> 
               </Row>
               <hr></hr>
-            <Row style={{height:'65px',margin:'10px',alignItems:'flex-start'}}><h5> <b>Location : </b></h5> </Row>
+            <Row style={{height:'65px',margin:'10px',alignItems:'flex-start'}}><h5> <b>Location : {eventsDetails.Location} </b></h5> </Row>
             <Row style={{height:'65px',margin:'10px'}}>
-              <Col><h5> <b>Date : </b></h5></Col>
-              <Col><h5> <b>Time : </b></h5></Col>
+              <Col><h5> Date :{eventsDetails.dateFrom}-{eventsDetails.dateTo} </h5></Col>
+              <Col><h5> <b>Time :{eventsDetails.Time} </b></h5></Col>
             </Row>
           </Col>
         </Row>
         <Row style={{height:'235px',backgroundColor:"ghostwhite",marginTop:'20px',marginBottom:'20px',borderRadius:'20px'}}>
           <Col>
-           <Row style={{height:'65px',margin:'10px'}}>  <h6> <b>Performer : </b></h6></Row>
+           <Row style={{height:'65px',margin:'10px'}}>  <h6> <b>Performer : {eventsDetails.Performer}</b></h6></Row>
             <Row style={{height:'65px',margin:'10px'}}> 
-            <Col><h6> <b>Contact Person : </b></h6></Col>
-            <Col style={{alignContent:'flex-start'}}>Name / Conatct </Col>
+            <Col><h6> <b>Contact Person :{eventsDetails.contactPerson} </b></h6></Col>
+            <Col style={{alignContent:'flex-start'}}>{eventsDetails.contactPerson} / {eventsDetails.Contact} </Col>
             </Row>
 
             </Col>
