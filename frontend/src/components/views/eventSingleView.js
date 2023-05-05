@@ -6,21 +6,26 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
+import { FaRegFilePdf } from "react-icons/fa";
 
 const EventSingleView = (props) => {
   const [eventsDetails, setEventsDetails] = useState(props.history.location.state)
 
+  const dowloadPDF = async () =>{
+    window.open(eventsDetails.Agenda)
+  }
+
   return (
     <div>eventSingleView
-       <Container>
-       <Row>
+     
+       {/* <Row> */}
         <Col>
         <img src={eventsDetails.imageOne}
         // "images/Dash.jpg" 
-        style={{width: '100%',marginRight:'10px'}}
+        style={{width: '100%',marginRight:'10px',height:'400px'}}
          alt="events" />
         </Col>
-      </Row>
+      {/* </Row> */}
       <Row>
 
         <Navbar bg="dark" variant="dark">
@@ -33,18 +38,20 @@ const EventSingleView = (props) => {
             </Nav>
           </Container>
         </Navbar>
+        
         </Row>
+        <Container>
         <Row style={{height:'420px',backgroundColor:'ghostwhite',marginTop:'20px',marginBottom:'20px',borderRadius:'20px'}}>
           <Col >
-            <Row style={{height:'180px',backgroundColor:'pink',margin:'20px'}}>  <img src={eventsDetails.imageTwo}
+            <Row style={{height:'180px',margin:'20px'}}>  <img src={eventsDetails.imageTwo}
         style={{marginRight:'10px',height:'180px'}}
          alt="events" /></Row>
-            <Row style={{height:'180px',backgroundColor:"lightgreen" ,margin:'20px'}}><img src={eventsDetails.imageThree}
+            <Row style={{height:'180px',margin:'20px'}}><img src={eventsDetails.imageThree}
         style={{marginRight:'10px',height:'180px'}} alt="events" /></Row>
           </Col>
           <Col>
           <hr></hr>
-            <Row style={{height:'180px',margin:'10px'}}><h2>{eventsDetails.eventName}</h2>
+            <Row style={{height:'220px',margin:'10px'}}><h2>{eventsDetails.eventName}</h2>
              <small>{eventsDetails.eventDescription}
               </small> 
               </Row>
@@ -58,7 +65,7 @@ const EventSingleView = (props) => {
         </Row>
         <Row style={{height:'235px',backgroundColor:"ghostwhite",marginTop:'20px',marginBottom:'20px',borderRadius:'20px'}}>
           <Col>
-           <Row style={{height:'65px',margin:'10px'}}>  <h6> <b>Performer : {eventsDetails.Performer}</b></h6></Row>
+           <Row style={{height:'65px',margin:'10px'}}>  <h6> <b>Performer / Organizer : {eventsDetails.Performer}</b></h6></Row>
             <Row style={{height:'65px',margin:'10px'}}> 
             <Col><h6> <b>Contact Person :{eventsDetails.contactPerson} </b></h6></Col>
             <Col style={{alignContent:'flex-start'}}>{eventsDetails.contactPerson} / {eventsDetails.Contact} </Col>
@@ -66,8 +73,10 @@ const EventSingleView = (props) => {
 
             </Col>
             <Col>
-            <hr></hr><Row style={{height:'90px',backgroundColor:'lightgray',margin:'20px'}}><p><br></br>"Experience Sri Lanka's rich cultural heritage. Download our event agenda for full details and plan your unforgettable visit today!"</p></Row><hr></hr>
-            <Row style={{height:'50px',backgroundColor:"lightgreen" ,margin:'20px'}}> pdf downloader</Row>
+            <hr></hr><Row style={{height:'85px',backgroundColor:'lightgray',margin:'20px',padding:'5px'}}><p >"Experience Sri Lanka's rich cultural heritage. Download our event agenda/supportive guides for full details and plan your unforgettable visit today!"</p></Row><hr></hr>
+            <Row style={{height:'50px',margin:'20px'}}> Download the Agenda / Supportive Guide : <FaRegFilePdf onClick={dowloadPDF} style={{marginTop:'-30px',marginLeft:'30px'}} size={42}/>
+            <sub style={{color:'red'}}> * click on the PDF icon to download the agenda..</sub>
+             </Row>
             </Col>
         </Row>
        </Container>

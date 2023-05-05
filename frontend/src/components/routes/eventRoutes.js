@@ -8,6 +8,7 @@ import AddEvents from "../views/addEvents";
 
 export const EventRouters = () => {
     return(
+        <div>
         <Router>
             <Switch>
                 <Route path="/event" exact component={EventDashboard}/>
@@ -15,8 +16,8 @@ export const EventRouters = () => {
                 <Route path="/eventAll" exact component={Events}/>
                 <Route path="/eventCalendar" exact component={EventsCalendar}/>
                 <Route path="/addEvent" exact component={AddEvents}/>
-
             </Switch>
         </Router>
+        </div>
     )
 }

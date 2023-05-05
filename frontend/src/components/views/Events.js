@@ -37,11 +37,11 @@ const Events = () => {
 
   return (
     <div>
-    <Container>
+    
     <Row>
         <Col>
-        <img src="images/Dash.jpg" 
-        style={{width: '100%',marginRight:'10px'}}
+        <img src="images/DashTwo.jpg" 
+        style={{width: '100%',marginRight:'10px',height:'400px'}}
          alt="events" />
         </Col>
     </Row>
@@ -58,6 +58,7 @@ const Events = () => {
     </Container>
     </Navbar>
     </Row>
+    <Container>
     <Row style={{marginTop:'25px',marginBottom:'25px',backgroundColor:'ghostwhite' ,paddingTop:'25px',paddingBottom:'25px',paddingLeft:'275px',paddingRight:'275px',borderRadius:'20px'}}>
         <hr></hr>
         <p>
@@ -95,18 +96,19 @@ const Events = () => {
     { eventsDetails.map((events)=>{
       return(
   
-        <Card style={{ width: '18rem',display: 'block',maxWidth: '480px',backgroundColor: 'ghostwhite',borderRadius: "1.75rem",padding:" .75rem",boxShadow: "0 16px 24px -12px rgba(black,0.15)",border:'none',marginRight:'50px',marginBottom:'50px',}} >
+        <Card style={{ width: '18rem',display: 'block',maxWidth: '480px',backgroundColor: 'ghostwhite',borderRadius: "1.75rem",padding:" .75rem",boxShadow: "0 16px 24px -12px rgba(black,0.15)",border:'none',marginRight:'40px',marginBottom:'50px',height:'35rem'}} >
           { console.log("events",events)}
         <Card.Img style={{textAlign : "center",borderRadius: "1.25rem",Container: "contents",
-      fit: "fill-box",
+      fit: "fill-box",height:'12rem',
       marginBottom: "1rem",
       boxShadow: "0 16px 24px -12px rgba(black,0.15)"}} 
           variant="top" src={events.imageOne != 0 ? events.imageOne : "images/calander.jpg"} />
         <Card.Body style={{display:'flex',flexDirection:'column',alignItems:'flex-start'}}>
           <Card.Title>{events.eventName}</Card.Title>
           <Card.Text style={{textAlign:'left'}}>
-           {events.eventDescription}
+           {events.eventDescription.substring(0, 200)}...
           </Card.Text>
+        
           <Button style={{borderRadius:'1.25rem'}} variant="primary" onClick={() => { viewOne(events) }}>View More</Button>
         </Card.Body>
       </Card>
