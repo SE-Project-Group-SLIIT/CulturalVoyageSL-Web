@@ -11,7 +11,7 @@ export default function NavBar() {
     return (
         <nav className='navbar'>
             <div className='logo'>
-            <img src='images/logo.png' alt="Logo"style={{ width: 300, height: 80 }}/>
+            <img src='images/logo.png' alt="Logo" style={{ width: 300, height: 80 }}/>
             </div>
             <ul className={MobileView ? "nav-links-mobile" : "nav-links"} onClick={() => setMobileView(false)}>
                 <Link to="#"><li>Home</li></Link>
