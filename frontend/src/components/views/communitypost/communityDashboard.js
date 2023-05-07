@@ -10,7 +10,7 @@ import { FaSearch } from "react-icons/fa";
 import { BiHeart, BiMailSend, BiMessageDots, BiNotification, BiNews, BiEditAlt, BiTime, BiUserCircle, BiPhoneCall } from "react-icons/bi";
 import NavBar from '../shared/NavBar';
 import SearchBar from './SearchBar';
-import { Form,Modal} from "react-bootstrap";
+import { Form, Modal } from "react-bootstrap";
 import { GoLocation } from "react-icons/go"
 import { IoIosHeart } from 'react-icons/io';
 import { RiHotelLine, RiNotification3Line, RiFilePaper2Line } from "react-icons/ri"
@@ -263,7 +263,7 @@ const CommunityDashboard = () => {
                                     <div className='col'>
                                         <div className='d-flex justify-content-center'>
                                             <Button className="rounded-pill" variant="outline-warning" style={{ width: 100, height: 40, borderRadius: '1.25rem', boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px', color: 'black' }}
-                                            onClick={() => openModalAddReply()}>
+                                                onClick={() => openModalAddReply()}>
                                                 <strong>Reply</strong>
                                             </Button>
                                             {/* <button type="button" className="rounded-pill" variant="outline-warning" style={{ width: 100, height: 40, borderRadius: '1.25rem', boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px', color: 'black' }}>Reply</button> */}
@@ -277,7 +277,7 @@ const CommunityDashboard = () => {
                                     </div>
                                     <div className='col d-flex justify-content-center'>
                                         <p style={{ fontFamily: "Gill Sans", fontSize: 19, marginTop: 2, marginRight: 3 }}>3</p>
-                                        <BiMessageDots style={{ width: 30, height: 30 }} onClick={() => openModalViewReplies()}/>
+                                        <BiMessageDots style={{ width: 30, height: 30 }} onClick={() => openModalViewReplies()} />
                                     </div>
                                     <div className='col d-flex justify-content-center'>
                                         <BiMailSend style={{ width: 30, height: 30 }} />
@@ -661,6 +661,25 @@ const CommunityDashboard = () => {
                         <div className="col-10">
                             <div className="card  p-0 m-0">
                                 <div className="card-header text-white  bg-dark">
+                                    See Historycal places
+                                </div>
+                                <div className='card-body p-0 m-0 d-flex flex-column justify-content-left'>
+                                    <Row className='d-flex justify-content-center mb-3' >
+                                    <img src='images/googlemap.png' className='w-100' style={{ height: 200 }} />
+                                        <Button className="rounded-pill" variant="outline-warning" style={{ width: 200,marginTop: 10,height: 40, borderRadius: '1.25rem', boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px', color: 'black' }}>
+                                            <strong>View Map</strong>
+                                        </Button>
+                                    </Row>
+                                </div>
+                            </div>
+                        </div>
+                    </Row>
+                    <Row className='mt-3'>
+                        <div className="col">
+                        </div>
+                        <div className="col-10">
+                            <div className="card  p-0 m-0">
+                                <div className="card-header text-white  bg-dark">
                                     Active Status
                                 </div>
                                 <div className='card-body p-0 m-0 d-flex flex-column justify-content-left'>
@@ -728,8 +747,6 @@ const CommunityDashboard = () => {
                             </div>
                         </div>
                     </Row>
-
-
                 </div>
             </Row>
         </>
