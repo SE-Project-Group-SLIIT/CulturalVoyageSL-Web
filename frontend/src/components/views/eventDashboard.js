@@ -13,10 +13,6 @@ const EventDashboard = () => {
   const [transformStyle2, setTransformStyle2] = useState('scale(1)');
   const [transformStyle3, setTransformStyle3] = useState('scale(1)');
   const [transformStyle4, setTransformStyle4] = useState('scale(1)');
-  const [transformStyle5, setTransformStyle5] = useState('scale(1)');
-  const [transformStyle6, setTransformStyle6] = useState('scale(1)');
-  const [transformStyle7, setTransformStyle7] = useState('scale(1)');
-  const [transformStyle8, setTransformStyle8] = useState('scale(1)');
   
   return (
     <div>
@@ -28,7 +24,7 @@ const EventDashboard = () => {
          alt="events" />
         </Col>
       </Row>
-      <Row>
+      
 
       <Navbar bg="dark" variant="dark">
         <Container>
@@ -40,7 +36,7 @@ const EventDashboard = () => {
           </Nav>
         </Container>
       </Navbar>
-      </Row>
+      
      
       <Row style={{marginTop:'25px',marginBottom:'25px',backgroundColor:'ghostwhite',borderRadius:'20px'}}>
       <h1 style={{fontFamily:'Roboto',marginTop:'25px'}}>Celebrate traditions, embrace heritage</h1><h3 style={{fontFamily:'Montserrat'}}>Discover our events.</h3>
@@ -160,10 +156,9 @@ const EventDashboard = () => {
 		boxShadow: "0 16px 24px -12px rgba(black,0.15)"}} 
         variant="top" src="images/calander.jpg" />
       <Card.Body style={{display:'flex',flexDirection:'column',alignItems:'flex-start'}}>
-        <Card.Title>Card Title</Card.Title>
+        <Card.Title></Card.Title>
         <Card.Text style={{textAlign:'left'}}>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
+     
         </Card.Text>
         <Button style={{borderRadius:'1.25rem'}} variant="primary">View More</Button>
       </Card.Body>
@@ -175,10 +170,9 @@ const EventDashboard = () => {
 		boxShadow: "0 16px 24px -12px rgba(black,0.15)"}} 
         variant="top" src="images/calander.jpg" />
       <Card.Body style={{display:'flex',flexDirection:'column',alignItems:'flex-start'}}>
-        <Card.Title>Card Title</Card.Title>
+        <Card.Title></Card.Title>
         <Card.Text style={{textAlign:'left'}}>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
+        
         </Card.Text>
         <Button style={{borderRadius:'1.25rem'}} variant="primary">View More</Button>
       </Card.Body>
@@ -190,10 +184,9 @@ const EventDashboard = () => {
 		boxShadow: "0 16px 24px -12px rgba(black,0.15)"}} 
         variant="top" src="images/calander.jpg" />
       <Card.Body style={{display:'flex',flexDirection:'column',alignItems:'flex-start'}}>
-        <Card.Title>Card Title</Card.Title>
+        <Card.Title></Card.Title>
         <Card.Text style={{textAlign:'left'}}>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
+         
         </Card.Text>
         <Button style={{borderRadius:'1.25rem'}} variant="primary">View More</Button>
       </Card.Body>
@@ -205,10 +198,9 @@ const EventDashboard = () => {
 		boxShadow: "0 16px 24px -12px rgba(black,0.15)"}} 
         variant="top" src="images/calander.jpg" />
       <Card.Body style={{display:'flex',flexDirection:'column',alignItems:'flex-start'}}>
-        <Card.Title>Card Title</Card.Title>
+        <Card.Title></Card.Title>
         <Card.Text style={{textAlign:'left'}}>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
+          
         </Card.Text>
         <Button style={{borderRadius:'1.25rem'}} variant="primary">View More</Button>
       </Card.Body>

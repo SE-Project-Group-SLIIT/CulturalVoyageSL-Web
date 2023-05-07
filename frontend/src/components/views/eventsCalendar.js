@@ -3,6 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
+import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
@@ -12,9 +13,11 @@ import parse from 'date-fns/parse'
 import startOfWeek from 'date-fns/startOfWeek'
 import getDay from 'date-fns/getDay'
 import enUS from 'date-fns/locale/en-US'
+import { FaCalendar } from "react-icons/fa";
 import moment from 'moment'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import { getAllEventsService } from '../services/eventService';
+import NavBar from './shared/NavBar';
 
 // const locales = {
 //   'en-US': {
@@ -100,8 +103,9 @@ const EventsCalendar = () => {
   // }
 
   const getEventStyle = (event) => {
+    console.log("color",event);
     let backgroundColor = '';
-    switch (event.eventType) {
+    switch (event.type) {
       case 'conference':
         backgroundColor = 'Pink';
         break;
@@ -109,14 +113,18 @@ const EventsCalendar = () => {
         backgroundColor = 'lightGreen';
         break;
       case 'Festival':
-        backgroundColor = 'lightSkyBlue';
+        backgroundColor = 'lightGreen';
         break;
       case 'religious':
         backgroundColor = 'lightSkyBlue';
         break;
+      case 'Exhibition':
+        backgroundColor = 'lightSkyBlue';
+        break;
       default:
-        backgroundColor = 'lightBlue';
+        backgroundColor = 'green';
     }
+    console.log("bg",backgroundColor);
     return {
       style: {
         backgroundColor: backgroundColor
@@ -131,7 +139,9 @@ const EventsCalendar = () => {
 
   return (
     <div>
-      <Container>
+       <Container>
+      <NavBar/>
+     
         <Row>
           <Col>
             <img src="images/DashOne.jpg"
@@ -139,7 +149,7 @@ const EventsCalendar = () => {
               alt="events" />
           </Col>
         </Row>
-        <Row >
+        
 
           <Navbar bg="dark" variant="dark">
             <Container>
@@ -151,17 +161,32 @@ const EventsCalendar = () => {
               </Nav>
             </Container>
           </Navbar>
-        </Row>
+        
         <Row style={{ marginTop: '50px', marginBottom: '50px' }}>
+        <Col>
+        <Card  style={{ width: '15rem',boxShadow: 'rgba(0, 0, 0, 0.1) 0px 4px 12px'}}>
+      <Card.Header className ='bg-dark text-white'>Events Type</Card.Header>
+      <ListGroup style={{backgroundColor: 'gostWhite'}} variant="flush" >
+       <ListGroup.Item className='d-flex justify-content-left'>Festival < FaCalendar style={{marginTop:'4px',marginLeft:'117px', fill:'lightSkyBlue'}}/></ListGroup.Item>
+        <ListGroup.Item className='d-flex justify-content-left'>Religious  < FaCalendar style={{marginTop:'4px',marginLeft:'106px', fill:'lightcoral'}}/> </ListGroup.Item>
+        <ListGroup.Item className='d-flex justify-content-left'>Exhibition< FaCalendar style={{marginTop:'4px',marginLeft:'101px',fill:'lightsteelblue'}}/></ListGroup.Item>
+        <ListGroup.Item className='d-flex justify-content-left'>Conference < FaCalendar style={{marginTop:'4px',marginLeft:'88px',fill:'lightGreen'}}/></ListGroup.Item>
+        <ListGroup.Item className='d-flex justify-content-left'>Entertain < FaCalendar style={{marginTop:'4px',marginLeft:'106px',fill:'gold'}}/></ListGroup.Item>
+      </ListGroup>
+    </Card>
+          </Col> 
+          <Col xs={9}>
           {console.log("calender.evnts>>>", calenederEvents)}
           <Calendar
             localizer={localizer}
             events={calenederEvents}
             startAccessor="start"
             endAccessor="end"
-            style={{ height: 800, backgroundColor: 'lightgoldenrodyellow', padding: 20, borderRadius: 20 }}
+            style={{ height: 600, backgroundColor: 'gostWhite', padding: 20, borderRadius: 20 , boxShadow: 'rgba(0, 0, 0, 0.1) 0px 4px 12px'}}
             eventPropGetter={getEventStyle}
           />
+          </Col>
+        
         </Row>
       </Container>
     </div>

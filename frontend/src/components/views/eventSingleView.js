@@ -16,17 +16,19 @@ const EventSingleView = (props) => {
   }
 
   return (
-    <div>eventSingleView
+    <div>
      
-       {/* <Row> */}
+     <Container>
+       <Row>
         <Col>
         <img src={eventsDetails.imageOne}
         // "images/Dash.jpg" 
         style={{width: '100%',marginRight:'10px',height:'400px'}}
          alt="events" />
         </Col>
-      {/* </Row> */}
-      <Row>
+      </Row>
+
+   
 
         <Navbar bg="dark" variant="dark">
           <Container>
@@ -39,15 +41,15 @@ const EventSingleView = (props) => {
           </Container>
         </Navbar>
         
-        </Row>
-        <Container>
+       
+      
         <Row style={{height:'420px',backgroundColor:'ghostwhite',marginTop:'20px',marginBottom:'20px',borderRadius:'20px'}}>
           <Col >
             <Row style={{height:'180px',margin:'20px'}}>  <img src={eventsDetails.imageTwo}
-        style={{marginRight:'10px',height:'180px'}}
+        style={{marginRight:'10px',height:'180px',borderRadius:'30px'}}
          alt="events" /></Row>
             <Row style={{height:'180px',margin:'20px'}}><img src={eventsDetails.imageThree}
-        style={{marginRight:'10px',height:'180px'}} alt="events" /></Row>
+        style={{marginRight:'10px',height:'180px',borderRadius:'30px'}} alt="events" /></Row>
           </Col>
           <Col>
           <hr></hr>
@@ -74,7 +76,7 @@ const EventSingleView = (props) => {
             </Col>
             <Col>
             <hr></hr><Row style={{height:'85px',backgroundColor:'lightgray',margin:'20px',padding:'5px'}}><p >"Experience Sri Lanka's rich cultural heritage. Download our event agenda/supportive guides for full details and plan your unforgettable visit today!"</p></Row><hr></hr>
-            <Row style={{height:'50px',margin:'20px'}}> Download the Agenda / Supportive Guide : <FaRegFilePdf onClick={dowloadPDF} style={{marginTop:'-30px',marginLeft:'30px'}} size={42}/>
+            <Row style={{height:'50px',margin:'20px'}}> Download the Agenda / Supportive Guide : <FaRegFilePdf onClick={dowloadPDF} style={{marginTop:'-30px',marginLeft:'30px'}} size={28}/>
             <sub style={{color:'red'}}> * click on the PDF icon to download the agenda..</sub>
              </Row>
             </Col>

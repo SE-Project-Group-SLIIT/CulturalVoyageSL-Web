@@ -9,6 +9,8 @@ import Nav from 'react-bootstrap/Nav';
 import {FaSearch}  from "react-icons/fa";
 import { getAllEventsService } from '../services/eventService';
 import { useLocation, useHistory } from 'react-router-dom';
+import EventsSearchBar from './eventsSearchBar';
+// import NavBar from './shared/NavBar';
 
 const Events = () => {
   const [eventsDetails, setEventsDetails] = useState([])
@@ -37,7 +39,7 @@ const Events = () => {
 
   return (
     <div>
-    
+        <Container>
     <Row>
         <Col>
         <img src="images/DashTwo.jpg" 
@@ -45,7 +47,7 @@ const Events = () => {
          alt="events" />
         </Col>
     </Row>
-    <Row>
+   
 
     <Navbar bg="dark" variant="dark">
     <Container>
@@ -57,8 +59,8 @@ const Events = () => {
         </Nav>
     </Container>
     </Navbar>
-    </Row>
-    <Container>
+
+
     <Row style={{marginTop:'25px',marginBottom:'25px',backgroundColor:'ghostwhite' ,paddingTop:'25px',paddingBottom:'25px',paddingLeft:'275px',paddingRight:'275px',borderRadius:'20px'}}>
         <hr></hr>
         <p>
@@ -76,7 +78,7 @@ const Events = () => {
         <hr></hr>
     </Row>
     <Row>
-    <div class="row table-head-search">
+    {/* <div class="row table-head-search">
                     <div className="col-md-8"></div>
                     <div className="col">
                         <div class="input-group input-group-search">
@@ -90,9 +92,10 @@ const Events = () => {
                             </div>
                         </div>
             </div>
-            </div>
+            </div> */}
+            <EventsSearchBar/>
     </Row>
-    <Row style={{marginTop:'25px',marginBottom:'25px',display:'flex',flexDirection:'row',justifyContent:'flex-start',alignItems:'center'}}>
+    <Row style={{marginTop:'35px',marginBottom:'25px',display:'flex',flexDirection:'row',justifyContent:'flex-start',alignItems:'center'}}>
     { eventsDetails.map((events)=>{
       return(
   

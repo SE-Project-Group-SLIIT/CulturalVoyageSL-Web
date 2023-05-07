@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+
+import React, { useState,useEffect } from 'react'
+import "./form.css";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
@@ -11,7 +13,7 @@ import { ProgressBar } from 'react-bootstrap';
 import DropzoneArea from '../../dropZoneComponents/dropZone';
 import { addEventsService } from '../services/eventService';
 
-const AddEvents = () => {
+const AddEventForm = () => {
     const [eventName,seteventName] = useState('');
     const [eventDescription,seteventDescription] =useState('');
     const [eventType,seteventType] = useState('');
@@ -47,7 +49,7 @@ const AddEvents = () => {
     const [loadingProgressThree, setLoadingProgressThree] = useState(10)
     const [stateThree, setStateThree] = useState(false)
 
-   
+      
     const onSubmit =async () =>{
         let event = {
             eventName:eventName, 
@@ -120,182 +122,122 @@ const AddEvents = () => {
         setLoadingProgressThree(data)
     }
 
-  
   return (
     <div>
-        <Container >
-           <Row>
-        <Col>
-        <img src="images/Dash.jpg" 
-        style={{width: '100%',marginRight:'10px'}}
-         alt="events" />
-        </Col>
-      </Row>
-        <Navbar bg="dark" variant="dark">
-        <Container>
-          <Navbar.Brand href="#home">Events</Navbar.Brand>
-          <Nav className="me-auto">
-            <Nav.Link href="#home">Dashboard</Nav.Link>
-            <Nav.Link href="#features">All Events</Nav.Link>
-            <Nav.Link href="#pricing">Events Calander</Nav.Link>
-          </Nav>
-        </Container>
-      </Navbar>
-      
-        <Container
-       >
-        <Card  style={{ 
-          marginTop:'80px',
-          marginLeft:'150px',
-          marginRight:'150px',
-          marginBottom:'20px',
-          padding:'80px',
-          border: '2px solid lightGreen' ,
-          backgroundColor:'ghostwhite'
-        }}>
-         <Form  >
-         <h4> Add New Event </h4> 
-       <br></br>
-      <Form.Group className="mb-3" controlId="formBasicEmail" value={eventName} onChange={(e)=>{seteventName(e.target.value)}}>
-        <Form.Label>Event Title</Form.Label>
-        <Form.Control type="text" placeholder="Enter event title" />
-      </Form.Group>
-    
-      <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1" value={eventDescription} onChange={(e)=>{seteventDescription(e.target.value)}}>
-        <Form.Label>Description</Form.Label>
-        <Form.Control as="textarea" rows={3} placeholder="Enter description with max 100 words"/>
-      </Form.Group>
 
-      <Row style={{display:'flex',flexDirection:'row',alignItems:'flex-start'}}>
-        <Col>
-      <Form.Group className="mb-3" controlId="formBasicEmail"value={eventType} onChange={(e)=>{seteventType(e.target.value)}}>
-        <Form.Label>Event Type</Form.Label>
-        <Form.Control type="text" placeholder="Enter event type" />
-      </Form.Group>
-      </Col>
-      <Col>
-      <Form.Group className="mb-3" controlId="formBasicEmail" value={dateFrom} onChange={(e)=>{setdateFrom(e.target.value)}}>
-        <Form.Label>DateFrom</Form.Label>
-        <Form.Control type="date" />
-      </Form.Group>
-      </Col>
-      <Col>
-      <Form.Group className="mb-3" controlId="formBasicEmail" value={dateTo} onChange={(e)=>{setdateTo(e.target.value)}}>
-        <Form.Label>DateTo</Form.Label>
-        <Form.Control type="date"  />
-      </Form.Group>
-      </Col>
-      <Col>
-      <Form.Group className="mb-3" controlId="formBasicEmail" value={Time} onChange={(e)=>{setTime(e.target.value)}}>
-        <Form.Label>Time</Form.Label>
-        <Form.Control type="time" />
-      </Form.Group>
-      </Col>
-      </Row>
-        <Row>
-          <Col>
-      <Form.Group className="mb-3" controlId="formBasicEmail" value={Location} onChange={(e)=>{setLocation(e.target.value)}}>
-        <Form.Label>Location</Form.Label>
-        <Form.Control type="text" placeholder="Enter location" />
-      </Form.Group>
-      </Col>
-      <Col>
-      <Form.Group className="mb-3" controlId="formBasicEmail" value={Performer} onChange={(e)=>{setPerformer(e.target.value)}}>
-        <Form.Label>Performer / Organizer</Form.Label>
-        <Form.Control type="text" placeholder="performer/organizer" />
-      </Form.Group>
-      </Col>
-      <Col>
-      <Form.Group className="mb-3" controlId="formBasicEmail" value={contactPerson} onChange={(e)=>{setcontactPerson(e.target.value)}}>
-        <Form.Label>Contact Person</Form.Label>
-        <Form.Control type="text" placeholder="Enter contact person" />
-      </Form.Group>
-      </Col>
-      <Col>
-      <Form.Group className="mb-3" controlId="formBasicEmail" value={Contact} onChange={(e)=>{setContact(e.target.value)}}>
-        <Form.Label>Contact Number</Form.Label>
-        <Form.Control type="text" placeholder="078#######" />
-      </Form.Group>
-      </Col>
-      </Row>
-        <Row>
-          <Col>
-      <Form.Group className="mb-3" controlId="formBasicEmail"> 
-        <Form.Label>Image One</Form.Label>
-        <div className='col-4'>
+
+<section style={{padding:"50px 20px 35px 20px",boxShadow: 'rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px'}} class="get-in-touch">
+
+   <h1 class="title">Add new Event From Here </h1>
+   <form class="contact-form row">
+      <div class="form-field col-lg-6">
+         <input id="name" class="input-text js-input" type="text" value={eventName} onChange={(e)=>{seteventName(e.target.value)}} required/>
+         <label class="label" for="name">Event Title</label>
+      </div>
+      <div class="form-field col-lg-6 ">
+         <input id="des" class="input-text js-input" type="text" value={eventDescription} onChange={(e)=>{seteventDescription(e.target.value)}} required/>
+         <label class="label" for="email">Description</label>
+      </div>
+      <div class="form-field col-lg-3 ">
+         <input id="type" class="input-text js-input" type="text" value={eventType} onChange={(e)=>{seteventType(e.target.value)}} required/>
+         <label class="label" for="company">Event Type</label>
+      </div>
+      <div class="form-field col-lg-3 ">
+         <input id="datefrom" class="input-text js-input" type="date" value={dateFrom} onChange={(e)=>{setdateFrom(e.target.value)}} required/>
+         <label class="label" for="company">From</label>
+      </div>
+      <div class="form-field col-lg-3 ">
+         <input id="dateTo" class="input-text js-input" type="date" value={dateTo} onChange={(e)=>{setdateTo(e.target.value)}}required/>
+         <label class="label" for="company">To</label>
+      </div>
+      <div class="form-field col-lg-3 ">
+         <input id="time" class="input-text js-input" type="time" value={Time} onChange={(e)=>{setTime(e.target.value)}} required/>
+         <label class="label" for="company">Time</label>
+      </div>
+       <div class="form-field col-lg-3 ">
+         <input id="location" class="input-text js-input" type="text" value={Location} onChange={(e)=>{setLocation(e.target.value)}} required/>
+         <label class="label" for="phone">Location</label>
+      </div>
+      <div class="form-field col-lg-3 ">
+         <input id="performer" class="input-text js-input" type="text" value={Performer} onChange={(e)=>{setPerformer(e.target.value)}} required/>
+         <label class="label" for="phone">Performer / Organizer</label>
+      </div>
+      <div class="form-field col-lg-3 ">
+         <input id="CPerson" class="input-text js-input" type="text" value={contactPerson} onChange={(e)=>{setcontactPerson(e.target.value)}} required/>
+         <label class="label" for="phone">Contact Person</label>
+      </div>
+      <div class="form-field col-lg-3 ">
+         <input id="CNum" class="input-text js-input" type="text" value={Contact} onChange={(e)=>{setContact(e.target.value)}} required/>
+         <label class="label" for="phone">Contact Number</label>
+      </div>
+      <div class="form-field col-lg-3">
+      <label class="label" for="company">Image 1 </label>
+      <div >
         <DropzoneArea sendData={sendData} sendProgress={sendProgress}/>
         {/* {imageOne ? imageOne.substring(0, 30) + "..." : ''} */}
        
         <div>
-        {errFile ? <sub className='text-danger'>Must upload a file</sub> : ""}
+        {errFile ? <sub className='text-danger'>Upload Image One</sub> : ""}
         </div>
         </div>
         <div className='col-8'>
         {!imageOne && state ? <ProgressBar now={loadingProgress} /> : ""}
         </div>
-      </Form.Group>
-      </Col>
-      <Col>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-    <Form.Label>Image Two</Form.Label>
-        <div className='col-4'>
+      </div>
+      <div class="form-field col-lg-3">
+      <label class="label" for="company">Image 2  </label>
+      <div >
         <DropzoneArea sendData={sendDataOne} sendProgress={sendProgressOne}/>
         {/* {imageTwo ? imageTwo.substring(0, 30) + "..." : ''} */}
        
        <div>
-       {errFileOne? <sub className='text-danger'>Must upload a file</sub> : ""}
+       {errFileOne? <sub className='text-danger'>Upload Image Two</sub> : ""}
        </div>
        </div>
        <div className='col-8'>
        {!imageTwo && state ? <ProgressBar now={loadingProgressOne} /> : ""}
        </div>
-      </Form.Group>
-      </Col>
-      <Col>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Image Three</Form.Label>
-        <div className='col-4'>
+      </div>
+
+      <div class="form-field col-lg-3">
+      <label class="label" for="company">Image 3</label>
+        <div >
         <DropzoneArea sendData={sendDataTwo} sendProgress={sendProgressTwo}/>
         {/* {imageThree ? imageThree.substring(0, 30) + "..." : ''} */}
        
        <div>
-       {errFileTwo? <sub className='text-danger'>Must upload a file</sub> : ""}
+       {errFileTwo? <sub className='text-danger'>Upload Image Three</sub> : ""}
        </div>
        </div>
        <div className='col-8'>
        {!imageThree && state ? <ProgressBar now={loadingProgressTwo} /> : ""}
        </div>
-      </Form.Group>
-      </Col>
-      <Col>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Agenda / Guide PDF</Form.Label>
-        <div className='col-4'>
+
+      </div>
+      <div class="form-field col-lg-3 ">
+      <label class="label" for="company">Agenda/Guide</label>
+      <div style={{marginLeft:58}} >
         <DropzoneArea sendData={sendDataThree} sendProgress={sendProgressThree}/>
          {/* {Agenda ? Agenda.substring(0, 30) + "..." : ''} */}
        
        <div>
-       {errFileThree? <sub className='text-danger'>Must upload a file</sub> : ""}
+       {errFileThree? <sub className='text-danger'>Upload Agenda or Guide File</sub> : ""}
        </div>
        </div>
        <div className='col-8'>
        {!Agenda && state ? <ProgressBar now={loadingProgressThree} /> : ""}
        </div>
-        </Form.Group>
-        </Col>
-        </Row>
-    
-    </Form>
-    <br></br>
-    <Button  variant="success" type="submit" onClick={()=>onSubmit()}>
-        Add Event
-      </Button>
-      </Card>
-      </Container>
-    </Container>
+      </div>
+
+      <div class="form-field col-lg-12">
+         <input class="submit-btn" type="submit" value="Add Event" onClick={()=>onSubmit()}/>
+      </div>
+   </form>
+
+</section>
 
     </div>
   )
 }
 
-export default AddEvents
+export default AddEventForm
