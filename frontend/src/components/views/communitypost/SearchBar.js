@@ -4,11 +4,12 @@ import { FaSearch } from "react-icons/fa";
 export default function SearchBar() {
   return (
     <Row>
-      <Col className='d-flex justify-content-center' style={{ width: 1000, height: 50, marginTop: 30 }}>
+      <h3 style= {{fontFamily: "'Poppins', sans-serif",marginTop: 12}}><strong>Ask community</strong></h3>
+      <Col className='d-flex justify-content-center' style={{ width: 1000, height: 50, marginTop: 10 }}>
         <Form className="d-flex" >
           <Form.Control
             type="search"
-            placeholder="   Search About Needs"
+            placeholder="  Need help ? "
             className="me-2 rounded-pill"
             aria-label="Search"
             style={{ width: 700, height: 50 }}
