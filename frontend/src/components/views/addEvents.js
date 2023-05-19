@@ -69,7 +69,7 @@ const AddEvents = () => {
         let response = await addEventsService(event)
         console.log("responseEvents>>>",response);
         if(response){
-          alert("Success fully Added..")
+         window.alert("Successfully Added..")
         }
     }
 

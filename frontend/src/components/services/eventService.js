@@ -55,6 +55,24 @@ export const searchEventsService = async (payload) => {
     
     }
 
+    export const deleteEventsService = async (payload) => {
+        console.log('payload',payload);
+            try {
+                let response = await axios.post(BASE_URL + '/deleteEvent',payload);
+        console.log("eventRes",response);
+                return {
+                    ok: true,
+                    data: response.data
+                }
+            } catch (error) {
+                return {
+                    ok: false,
+                    error: error
+                }
+            }
+        
+        }
+
     export const filterEventsService = async (payload) => {
         console.log('payload',payload);
             try {

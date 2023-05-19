@@ -1,10 +1,56 @@
 import React, { useState, useEffect } from "react";
 import "./table.css";
-import { Container, Button } from "react-bootstrap";
-import { getAllEventsService } from "../services/eventService";
+import { Container, Button,Modal } from "react-bootstrap";
+import { deleteEventsService,getAllEventsService } from "../services/eventService";
+import Swal from 'sweetalert2'
 
 const EventsManage = () => {
   const [eventsDetails, setEventsDetails] = useState([]);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const[deleteData,setDeleteData] = useState('')
+
+  const handleShowDeleteModal = (data) => {
+    setShowDeleteModal(true);
+    setDeleteData(data);
+
+  };
+
+  const handleHideDeleteModal = () => {
+    setShowDeleteModal(false);
+  };
+
+  const handleDelete = async () => {
+    let deleteDatails={
+      _id :deleteData
+    }
+    let response = await deleteEventsService(deleteDatails);
+    if (response.ok) {
+      // setEventsDetails(response.data.data);
+      handleHideDeleteModal();
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        timer: 2000,
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success'
+          )
+          window.location.reload();
+        }
+      })
+      
+    }
+    console.log(">>>>", response);
+    
+  };
 
   const getAllEvents = async () => {
     let response = await getAllEventsService();
@@ -51,11 +97,39 @@ const EventsManage = () => {
                 </div>
                 <div class="col col-6" data-label="Payment Status">
                   <Button variant="warning">Update</Button> &nbsp;
-                  <Button variant="danger">Delete</Button>
+                  <Button variant="danger"   onClick={()=>handleShowDeleteModal(events._id)}>Delete</Button>
                 </div>
               </li>
             );
           })}
+
+{showDeleteModal && (
+        <Modal
+          show={showDeleteModal}
+          size="lg"
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+          onHide={handleHideDeleteModal}
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>Delete Event </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <p>Are you sure you want to delete this event?</p>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleHideDeleteModal}>
+              Cancel
+            </Button>
+            <Button variant="danger" onClick={handleDelete} >
+              Delete
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      )}
+
+
+
         </ul>
       </Container>
     </div>
