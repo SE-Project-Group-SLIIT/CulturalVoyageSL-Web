@@ -68,6 +68,9 @@ const AddEvents = () => {
         console.log("event",event);
         let response = await addEventsService(event)
         console.log("responseEvents>>>",response);
+        if(response){
+          alert("Success fully Added..")
+        }
     }
 
     const sendData = (data) => {

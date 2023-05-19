@@ -36,3 +36,39 @@ export const getAllEventsService = async () => {
     }
 
 }
+
+export const searchEventsService = async (payload) => {
+    console.log('payload',payload);
+        try {
+            let response = await axios.post(BASE_URL + '/searchEvents',payload);
+    console.log("eventRes",response);
+            return {
+                ok: true,
+                data: response.data
+            }
+        } catch (error) {
+            return {
+                ok: false,
+                error: error
+            }
+        }
+    
+    }
+
+    export const filterEventsService = async (payload) => {
+        console.log('payload',payload);
+            try {
+                let response = await axios.post(BASE_URL + '/filterEvents',payload);
+        console.log("eventRes",response);
+                return {
+                    ok: true,
+                    data: response.data
+                }
+            } catch (error) {
+                return {
+                    ok: false,
+                    error: error
+                }
+            }
+        
+        }
