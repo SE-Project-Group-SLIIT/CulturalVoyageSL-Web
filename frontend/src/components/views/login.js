@@ -15,7 +15,7 @@ export default function Login() {
         e.preventDefault();
 
         // validate user
-        axios.get(`http://localhost:5000/login/${Email}/${Password}`)
+        axios.get(`http://localhost:5000/login/login/${Email}/${Password}`)
             .then((response) => {
                 console.log(response.data);
                 setLogin(response.data.login);
