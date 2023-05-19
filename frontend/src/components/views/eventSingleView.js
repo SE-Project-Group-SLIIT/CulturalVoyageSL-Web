@@ -7,18 +7,44 @@ import Button from "react-bootstrap/Button";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import { FaRegFilePdf } from "react-icons/fa";
+import { singleEventsService } from "../services/eventService";
 
 const EventSingleView = (props) => {
-  const [eventsDetails, setEventsDetails] = useState(
-    props.history.location.state
-  );
+
+  let id = props.location.search
+    let result = id.substring(4);
+
+  console.log("res>>", result)
+
+  const [eventsDetails, setEventsDetails] = useState()
+  
 
   const dowloadPDF = async () => {
     window.open(eventsDetails.Agenda);
   };
 
+  const singleEvent = async(id) =>{
+    if(result){let data={
+      id:result
+    }
+
+    let response = await singleEventsService(data)
+    console.log('resData',response);
+    if(response.ok){
+      console.log('resData',response);
+      setEventsDetails(response.data.data)
+    }}
+
+  }
+
+  useEffect(() => {
+    singleEvent();
+  }, [result]);
+
+
   return (
     <div>
+      {eventsDetails &&
       <Container>
         <Row>
           <Col>
@@ -173,6 +199,7 @@ const EventSingleView = (props) => {
           </Col>
         </Row>
       </Container>
+}
     </div>
   );
 };

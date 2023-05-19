@@ -3,11 +3,25 @@ import "./table.css";
 import { Container, Button,Modal } from "react-bootstrap";
 import { deleteEventsService,getAllEventsService } from "../services/eventService";
 import Swal from 'sweetalert2'
+import UpdateEventModal from "./updateEventModal";
 
 const EventsManage = () => {
   const [eventsDetails, setEventsDetails] = useState([]);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const[deleteData,setDeleteData] = useState('')
+  const [showModal, setShowModal] = useState(false);
+  const[updateData,setUpdateData] = useState({})
+
+  const handleShowModal = (data) => {
+    setShowModal(true);
+    setUpdateData(data);
+  };
+  
+  const handleHideModal = () => {
+    setShowModal(false);
+    // Clear the updateModalData
+  };
+
 
   const handleShowDeleteModal = (data) => {
     setShowDeleteModal(true);
@@ -96,7 +110,7 @@ const EventsManage = () => {
                   {events.Location}
                 </div>
                 <div class="col col-6" data-label="Payment Status">
-                  <Button variant="warning">Update</Button> &nbsp;
+                  <Button variant="warning"  onClick={()=>handleShowModal(events)}>Update</Button> &nbsp;
                   <Button variant="danger"   onClick={()=>handleShowDeleteModal(events._id)}>Delete</Button>
                 </div>
               </li>
@@ -128,6 +142,24 @@ const EventsManage = () => {
         </Modal>
       )}
 
+
+{showModal && (
+        <Modal
+          show={showModal}
+          size="lg"
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+          onHide={handleHideModal}
+        >
+            <Modal.Header closeButton>
+                <Modal.Title>Update Event</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+        <UpdateEventModal data={updateData}/>
+          </Modal.Body>
+
+        </Modal>
+           )}
 
 
         </ul>

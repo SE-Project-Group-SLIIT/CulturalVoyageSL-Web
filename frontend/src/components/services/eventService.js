@@ -73,6 +73,23 @@ export const searchEventsService = async (payload) => {
         
         }
 
+        export const updateEventsService = async (payload) => {
+            console.log('payload',payload);
+                try {
+                    let response = await axios.post(BASE_URL + '/updateEvent',payload);
+            console.log("eventRes",response);
+                    return {
+                        ok: true,
+                        data: response.data
+                    }
+                } catch (error) {
+                    return {
+                        ok: false,
+                        error: error
+                    }
+                }
+            
+            }
     export const filterEventsService = async (payload) => {
         console.log('payload',payload);
             try {
@@ -90,3 +107,21 @@ export const searchEventsService = async (payload) => {
             }
         
         }
+
+        export const singleEventsService = async (payload) => {
+            console.log('payload',payload);
+                try {
+                    let response = await axios.post(BASE_URL + '/eventSingle',payload);
+            console.log("eventRes",response);
+                    return {
+                        ok: true,
+                        data: response.data
+                    }
+                } catch (error) {
+                    return {
+                        ok: false,
+                        error: error
+                    }
+                }
+            
+            }

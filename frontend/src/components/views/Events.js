@@ -23,13 +23,15 @@ const Events = (props) => {
 
 
   const viewOne = async (data) => {
-    console.log(">>", data);
-    history.push({
-      pathname: "/eventSingle",
-      state: data,
-    });
-  };
 
+    console.log(">>", data)
+    if (data) {
+    
+    let singledata = window.location.replace(`/eventSingle?id=${data._id}`)
+    
+    singledata.data = data
+    }}
+    
   const searchEvent = async (search) =>{
     if(search){
         let searchData={
