@@ -1,7 +1,9 @@
 import React from 'react';
 import { MDBCol, MDBContainer, MDBRow, MDBCard, MDBCardText, MDBCardBody, MDBCardImage, MDBTypography, MDBIcon, MDBBtn } from 'mdb-react-ui-kit';
 import "../views/profile.css";
-
+import axios from "axios";
+//import UpdateProfile from "./updateProfile";
+import { useHistory } from "react-router-dom";
 
 export default function Profile() {
   return (

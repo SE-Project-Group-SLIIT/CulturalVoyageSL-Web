@@ -15,7 +15,7 @@ export default function Login() {
         e.preventDefault();
 
         // validate user
-        axios.get(`http://localhost:5000/login/login/${Email}/${Password}`)
+        axios.get(`http://localhost:5000/login/${Email}/${Password}`)
             .then((response) => {
                 console.log(response.data);
                 setLogin(response.data.login);
@@ -93,7 +93,7 @@ export default function Login() {
                             </div>
                             <div className="center ml-6">
                                 <p >
-                                    New Member ? <a href="/signup" class="link-success">Sign Up</a>
+                                    New Member ? <a href="/register" class="link-success">Sign Up</a>
                                 </p>
                             </div>
                         </form>
