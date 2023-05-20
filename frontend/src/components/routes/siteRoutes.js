@@ -7,19 +7,21 @@ import ReligiousSites from "../views/sites/religiousSites";
 import OtherSites from "../views/sites/otherSites";
 import AddSite from "../views/sites/addSite";
 import ViewSite from "../views/sites/viewSite";
+import ViewAllSites from "../views/sites/viewAllSites";
 
-export const SiteRouters = ()=>{
-    return(
-        <Router>
-            <Switch>
-                <Route path="/sites" exact component={SiteDashboard}/>
-                <Route path="/allSites" exact component={AllSites}/>
-                <Route path="/allHistorical" exact component={HistoricalSites}/>
-                <Route path="/allReligious" exact component={ReligiousSites}/>
-                <Route path="/allOther" exact component={OtherSites}/>
-                <Route path="/addSite" exact component={AddSite}/>
-                <Route path="/viewSite" exact component={ViewSite}/>
-            </Switch>
-        </Router>
-    )
-}
+export const SiteRouters = () => {
+  return (
+    <Router>
+      <Switch>
+        <Route path="/sites" exact component={SiteDashboard} />
+        <Route path="/allSites" exact component={AllSites} />
+        <Route path="/allHistorical" exact component={HistoricalSites} />
+        <Route path="/allReligious" exact component={ReligiousSites} />
+        <Route path="/allOther" exact component={OtherSites} />
+        <Route path="/addSite" exact component={AddSite} />
+        <Route path="/viewSite" exact component={ViewSite} />
+        <Route path="/viewAll" exact component={ViewAllSites} />
+      </Switch>
+    </Router>
+  );
+};

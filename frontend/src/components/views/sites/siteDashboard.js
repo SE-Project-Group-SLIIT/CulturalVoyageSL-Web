@@ -1,25 +1,32 @@
-import React, { useState, useEffect } from 'react';
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
+import React, { useState, useEffect } from "react";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
+import NavBar from "../shared/Navbar";
+import { useHistory } from "react-router-dom";
+// import "./sites.css";
 
 const SiteDashboard = () => {
-    return (
-        <div>
-            <Container>
-                <Row>
-                    <Col>
-                        <img src='images/siteDashboard.png'
-                            style={{ width: '100%', marginRight: '10px' }}
-                            alt='sites' />
-                    </Col>
-                </Row>
+  const history = useHistory();
+  return (
+    <div>
+      <Container>
+        <NavBar></NavBar>
+        <Row>
+          <Col>
+            <img
+              src="images/siteDashboard.png"
+              style={{ width: "100%", marginRight: "10px" }}
+              alt="sites"
+            />
+          </Col>
+        </Row>
 
-                <Row>
+        {/* <Row>
                     <Navbar bg="dark" variant="dark">
                         <Container>
                             <Navbar.Brand href="#">Dashboard</Navbar.Brand>
@@ -31,67 +38,200 @@ const SiteDashboard = () => {
                             </Nav>
                         </Container>
                     </Navbar>
-                </Row>
+                </Row> */}
 
-                <Row style={{ marginTop: '25px', marginBottom: '25px', backgroundColor: 'ghostwhite', borderRadius: '20px', paddingLeft:'200px',paddingRight:'200px'}}>
-                    <h1 style={{ fontFamily: 'Roboto', marginTop: '25px' }}>Join us to Learn about Sri Lanka's Stunning Heritage, Culture, Identity, and Historical Significance!</h1>
-                    <hr></hr>
-                    <p >
-                    See, Experiance and Know the Tradition and Heritage of Sri Lanka! <br></br>
-                    Get a clearer sense of where you're going before you go. Learn more about the place to make your journey more pleasurable and stress-free  from here. 
-                    Have a wonderful journey!
-                    </p>
-                    <hr></hr>
-                    <Col>
-                        <Row style={{ marginTop: '5px', marginBottom: '25px', justifyContent: 'space-between', paddingLeft: '150px', paddingRight: '150px' }}>
-                            <Card
-                                border="info"
-                                style={{ width: '9rem', transition: 'transform .2s' }}
-                            >
-                                <Card.Body>
-                                    <Card.Title style={{ fontSize: '12px', color: '#0dcaf0' }}>Historical Sites</Card.Title>
-                                    <Card.Text>
-                                        <img src='images/HistoricalSite.jpg'
-                                            style={{width: '100%'}}
-                                            alt='sites'/>
-                                    </Card.Text>
-                                </Card.Body>
-                            </Card>
+        <Row
+          style={{
+            marginTop: "25px",
+            marginBottom: "25px",
+            backgroundColor: "ghostwhite",
+            borderRadius: "20px",
+            paddingLeft: "200px",
+            paddingRight: "200px",
+          }}
+        >
+          <h1 style={{ fontFamily: "Roboto", marginTop: "25px" }}>
+            Join us to Learn about Sri Lanka's Stunning Heritage, Culture,
+            Identity, and Historical Significance!
+          </h1>
+          <hr></hr>
+          <p>
+            See, Experiance and Know the Tradition and Heritage of Sri Lanka!{" "}
+            <br></br>
+            Get a clearer sense of where you're going before you go. Learn more
+            about the place to make your journey more pleasurable and
+            stress-free from here. Have a wonderful journey!
+          </p>
+          <hr></hr>
+          <br></br>
 
-                            <Card
-                                border="info"
-                                style={{ width: '9rem', transition: 'transform .2s' }}
-                            >
-                                <Card.Body>
-                                    <Card.Title style={{ fontSize: '12px', color: '#0dcaf0' }}>Religious Sites</Card.Title>
-                                    <Card.Text>
-                                        <img src='images/ReligiousSite.jpg'
-                                            style={{width: '100%'}}
-                                            alt='sites'/>
-                                    </Card.Text>
-                                </Card.Body>
-                            </Card>
+          <Col>
+            <Row
+              style={{
+                marginTop: "5px",
+                marginBottom: "25px",
+                justifyContent: "space-between",
+                paddingLeft: "2px",
+                paddingRight: "2px",
+                display: "flex",
+              }}
+            >
+              <div
+                className="Card"
+                type="button"
+                // border="info"
+                style={{ height: "300px", width: "14rem" }}
+                onClick={() => history.push("/allSites")}
+              >
+                <Card.Body>
+                  <div className="img">
+                    <img
+                      src="images/AllSites.jpg"
+                      style={{
+                        width: "100%",
+                        height: "200px",
+                        borderRadius: "10px",
+                      }}
+                      alt="sites"
+                    />
+                  </div>
+                  <div
+                    className="intro"
+                    style={{
+                      height: "55px",
+                      width: "200px",
+                      padding: "6px",
+                      boxSizing: "border-box",
+                      position: "absolute",
+                      background: "rgb(27, 27, 27, .5)",
+                      color: "white",
+                      bottom: "-169px",
+                      borderRadius: "10px",
+                    }}
+                  >
+                    <h1 style={{ fontSize: "25px" }}>All Sites</h1>
+                  </div>
+                </Card.Body>
+              </div>
 
-                            <Card
-                                border="info"
-                                style={{ width: '9rem', transition: 'transform .2s' }}
-                            >
-                                <Card.Body>
-                                    <Card.Title style={{ fontSize: '12px', color: '#0dcaf0' }}>Other Sites</Card.Title>
-                                    <Card.Text>
-                                        <img src='images/OtherSite.jpg'
-                                            style={{width: '100%'}}
-                                            alt='sites'/>
-                                    </Card.Text>
-                                </Card.Body>
-                            </Card>
-                        </Row>
-                    </Col>
-                </Row>
+              <div
+                className="Card"
+                type="button"
+                // border="info"
+                style={{ height: "300px", width: "14rem" }}
+                onClick={() => history.push("/allHistorical")}
+              >
+                <Card.Body>
+                  <div className="img">
+                    <img
+                      src="images/HistoricalSite.jpg"
+                      style={{
+                        width: "100%",
+                        height: "200px",
+                        borderRadius: "10px",
+                      }}
+                      alt="sites"
+                    />
+                  </div>
+                  <div
+                    className="intro"
+                    style={{
+                      height: "55px",
+                      width: "200px",
+                      padding: "6px",
+                      boxSizing: "border-box",
+                      position: "absolute",
+                      background: "rgb(27, 27, 27, .5)",
+                      color: "white",
+                      bottom: "-169px",
+                      borderRadius: "10px",
+                    }}
+                  >
+                    <h1 style={{ fontSize: "25px" }}>Historical Sites</h1>
+                  </div>
+                </Card.Body>
+              </div>
 
-            </Container>
-        </div>
+              <div
+                className="Card"
+                type="button"
+                // border="info"
+                style={{ height: "300px", width: "14rem" }}
+                onClick={() => history.push("/allReligious")}
+              >
+                <Card.Body>
+                  <div className="img">
+                    <img
+                      src="images/ReligiousSite.jpg"
+                      style={{
+                        width: "100%",
+                        height: "200px",
+                        borderRadius: "10px",
+                      }}
+                      alt="sites"
+                    />
+                  </div>
+                  <div
+                    className="intro"
+                    style={{
+                      height: "55px",
+                      width: "200px",
+                      padding: "6px",
+                      boxSizing: "border-box",
+                      position: "absolute",
+                      background: "rgb(27, 27, 27, .5)",
+                      color: "white",
+                      bottom: "-169px",
+                      borderRadius: "10px",
+                    }}
+                  >
+                    <h1 style={{ fontSize: "25px" }}>Religious Sites</h1>
+                  </div>
+                </Card.Body>
+              </div>
 
-    )
-}
+              <div
+                className="Card"
+                type="button"
+                // border="info"
+                style={{ height: "300px", width: "14rem" }}
+                onClick={() => history.push("/allOther")}
+              >
+                <Card.Body>
+                  <div className="img">
+                    <img
+                      src="images/OtherSite.jpg"
+                      style={{
+                        width: "100%",
+                        height: "200px",
+                        borderRadius: "10px",
+                      }}
+                      alt="sites"
+                    />
+                  </div>
+                  <div
+                    className="intro"
+                    style={{
+                      height: "55px",
+                      width: "200px",
+                      padding: "6px",
+                      boxSizing: "border-box",
+                      position: "absolute",
+                      background: "rgb(27, 27, 27, .5)",
+                      color: "white",
+                      bottom: "-169px",
+                      borderRadius: "10px",
+                    }}
+                  >
+                    <h1 style={{ fontSize: "25px" }}>Other Sites</h1>
+                  </div>
+                </Card.Body>
+              </div>
+            </Row>
+          </Col>
+        </Row>
+      </Container>
+    </div>
+  );
+};
 export default SiteDashboard;
