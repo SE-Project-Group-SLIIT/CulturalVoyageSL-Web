@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './communityDashboard.css'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -20,32 +20,63 @@ import AddPost from '../../modals/addPost';
 import AddReply from '../../modals/addReply';
 import ViewReply from '../../modals/viewReplies';
 import ViewNotifications from '../../modals/viewNotifications'
-
+import { getAllPostService } from '../../services/postService';
 
 const CommunityDashboard = () => {
-
+    const [postData, setPostData] = useState([]);
+    const [viewReplyData, setviewReplyData] = useState(null);
+    const [addReplyData,setAddReplyData]  = useState(null);
     const [modalAddPost, setModalAddPost] = useState(false);
     const [modalAddReply, setModalAddReply] = useState(false);
     const [modalViewReplies, setModalViewReplies] = useState(false);
     const [modalViewNotifications, setModalViewNotifications] = useState(false);
-
+    let arryObj = [];
     //set add Question modal
     const openModalAddPost = () => {
         setModalAddPost(true);
     };
     //set add Reply modal
-    const openModalAddReply = () => {
+    const openModalAddReply = (value) => {
         setModalAddReply(true);
+        setAddReplyData(value)
     };
     //set View Reply modal
-    const openModalViewReplies = () => {
+    const openModalViewReplies = (value) => {
         setModalViewReplies(true);
+        setviewReplyData(value)
+        console.log(value);
     };
 
     //set View Notifications modal
     const openModalViewNotifications = () => {
         setModalViewNotifications(true);
     };
+    const getData = async () => {
+
+        try {
+            const response = await getAllPostService();
+            if (response.ok) {
+                setPostData(response.data);
+            }
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+
+    };
+    // async function getData(){
+    //     let response = await getAllPostService();
+    //     if (response.ok) {
+    //         console.log(response.data)
+    //         arryObj.push(response.data)
+    //         console.log(arryObj)
+    //         // setPostData(response.data)
+    //     }
+    // }
+    useEffect(() => {
+        getData()
+
+
+    }, [])
     return (
         <>
             <NavBar />
@@ -71,6 +102,7 @@ const CommunityDashboard = () => {
             >
                 <AddReply
                     onHide={() => setModalAddReply(false)}
+                    data = {addReplyData}
                 />
             </Modal>
             {/* modal for Add Reply */}
@@ -83,6 +115,7 @@ const CommunityDashboard = () => {
             >
                 <ViewReply
                     onHide={() => setModalViewReplies(false)}
+                    data = {viewReplyData}
                 />
             </Modal>
 
@@ -219,14 +252,22 @@ const CommunityDashboard = () => {
                             </div>
                         </div>
                     </Row>
-                    <Row className="mt-3" >
+                    {postData.map(post => (
+                        // <div key={post._id}>
+                        //     <h2>{post.title}</h2>
+                        //     <p>{post.message}</p>
+                        //     <p>User: {post.user}</p>
+                        //     <p>Likes: {post.likes}</p>
+                        //     {/* Render other properties as needed */}
+                        // </div>
+                        <Row className="mt-3" >
                         <div className="col">
                         </div>
                         <div className="col-8 ">
                             <div className="card" style={{ borderRadius: 10, height: 150, boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px' }} >
                                 <div className="card-header d-flex justify-content-left p-0">
                                     <div className='col-12 d-flex justify-content-between p-0'>
-                                        <p style={{ paddingTop: 10, marginTop: 5, marginLeft: 20 }}><strong>How much cost need to travel with three wheeler ?</strong></p>
+                                        <p style={{ paddingTop: 10, marginTop: 5, marginLeft: 20 }}><strong>{post.title}</strong></p>
                                         <BiEditAlt style={{ width: 25, height: 25, marginTop: 7, marginRight: 15 }} />
                                     </div>
                                 </div>
@@ -237,7 +278,7 @@ const CommunityDashboard = () => {
                                         </div>
                                         <div className="col-11 d-flex flex-column justify-content-left">
                                             <p className='d-flex justify-content-left pb-0 mb-0' style={{ marginLeft: 10 }}><strong>Anonymous</strong></p>
-                                            <p className='d-flex justify-content-left pb-0 mb-0' style={{ marginLeft: 10 }}>How much for 1km ? Have any apps to contact them</p>
+                                            <p className='d-flex justify-content-left pb-0 mb-0' style={{ marginLeft: 10 }}>{post.message}</p>
                                         </div>
                                         <Row className='mt-1 mb-1'>
                                             <div className='col-1 d-flex flex-column'>
@@ -263,7 +304,7 @@ const CommunityDashboard = () => {
                                     <div className='col'>
                                         <div className='d-flex justify-content-center'>
                                             <Button className="rounded-pill" variant="outline-warning" style={{ width: 100, height: 40, borderRadius: '1.25rem', boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px', color: 'black' }}
-                                                onClick={() => openModalAddReply()}>
+                                                onClick={() => openModalAddReply(post)}>
                                                 <strong>Reply</strong>
                                             </Button>
                                             {/* <button type="button" className="rounded-pill" variant="outline-warning" style={{ width: 100, height: 40, borderRadius: '1.25rem', boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px', color: 'black' }}>Reply</button> */}
@@ -277,7 +318,7 @@ const CommunityDashboard = () => {
                                     </div>
                                     <div className='col d-flex justify-content-center'>
                                         <p style={{ fontFamily: "Gill Sans", fontSize: 19, marginTop: 2, marginRight: 3 }}>3</p>
-                                        <BiMessageDots style={{ width: 30, height: 30 }} onClick={() => openModalViewReplies()} />
+                                        <BiMessageDots style={{ width: 30, height: 30 }} onClick={() => openModalViewReplies(post._id)} />
                                     </div>
                                     <div className='col d-flex justify-content-center'>
                                         <BiMailSend style={{ width: 30, height: 30 }} />
@@ -288,346 +329,9 @@ const CommunityDashboard = () => {
                             </div>
                         </div>
                     </Row>
-                    <Row className="mt-3" >
-                        <div className="col">
-                        </div>
-                        <div className="col-8 ">
-                            <div className="card" style={{ borderRadius: 10, height: 150, boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px' }} >
-                                <div className="card-header d-flex justify-content-left p-0">
-                                    <div className='col-12 d-flex justify-content-between p-0'>
-                                        <p style={{ paddingTop: 10, marginTop: 5, marginLeft: 20 }}><strong>Is safety to use public Transports ? are they expensive</strong></p>
-                                        <BiEditAlt style={{ width: 25, height: 25, marginTop: 7, marginRight: 15 }} />
-                                    </div>
-                                </div>
-                                <div className="card-body d-flex justify-content-left">
-                                    <Row className="pt-0">
-                                        <div className='col-1'>
-                                            <img src="images/sigiriya.png" class="rounded" alt="Profile pic" style={{ width: 50, height: 50 }} />
-                                        </div>
-                                        <div className="col-11 d-flex flex-column justify-content-left">
-                                            <p className='d-flex justify-content-left pb-0 mb-0' style={{ marginLeft: 10 }}><strong>Isura</strong></p>
-                                            <p className='d-flex justify-content-left pb-0 mb-0' style={{ marginLeft: 10 }}>Is safety to use public Transports ? are they expensive</p>
-                                        </div>
-                                        <Row className='mt-1 mb-1'>
-                                            <div className='col-1 d-flex flex-column'>
-                                                <span class="badge rounded-pill bg-primary" style={{ width: 60, height: 18, fontSize: 10 }}>member</span>
-
-                                            </div>
-                                            <div className='col-1 d-flex flex-column justify-content-left'>
-                                                <BiTime style={{ marginTop: 1, marginLeft: 15 }} />
-                                            </div>
-
-                                        </Row>
-                                    </Row>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-3 p-0" style={{ borderRadius: 10, boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px' }}>
-                            <div className="card" style={{ borderRadius: 10, height: 150 }}>
-                                <div className='row' style={{ marginTop: 30 }}>
-                                    <div className='col-7' style={{ marginLeft: 12 }}>
-                                        <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: 17, marginTop: 10, marginLeft: 3 }}> <strong> Any Related Questions?</strong></p>
-                                    </div>
-                                    <div className='col'>
-                                        <div className='d-flex justify-content-center'>
-                                            <Button className="rounded-pill" variant="outline-warning" style={{ width: 100, height: 40, borderRadius: '1.25rem', boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px', color: 'black' }}>
-                                                <strong>Reply</strong>
-                                            </Button>
-                                            {/* <button type="button" className="rounded-pill" variant="outline-warning" style={{ width: 100, height: 40, borderRadius: '1.25rem', boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px', color: 'black' }}>Reply</button> */}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className='row mt-3'>
-                                    <div className='col d-flex justify-content-center'>
-                                        <p style={{ fontFamily: "Gill Sans", fontSize: 19, marginTop: 2, marginRight: 3 }}>2</p>
-                                        <BiHeart style={{ width: 30, height: 30 }} />
-                                    </div>
-                                    <div className='col d-flex justify-content-center'>
-                                        <p style={{ fontFamily: "Gill Sans", fontSize: 19, marginTop: 2, marginRight: 3 }}>0</p>
-                                        <BiMessageDots style={{ width: 30, height: 30 }} />
-                                    </div>
-                                    <div className='col d-flex justify-content-center'>
-                                        <BiMailSend style={{ width: 30, height: 30 }} />
-                                    </div>
-                                </div>
-
-
-                            </div>
-                        </div>
-                    </Row>
-                    <Row className="mt-3" >
-                        <div className="col">
-                        </div>
-                        <div className="col-8 ">
-                            <div className="card" style={{ borderRadius: 10, height: 150, boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px' }} >
-                                <div className="card-header d-flex justify-content-left p-0">
-                                    <div className='col-12 d-flex justify-content-between p-0'>
-                                        <p style={{ paddingTop: 10, marginTop: 5, marginLeft: 20 }}><strong>Is there any guide scammers ?</strong></p>
-                                        <BiEditAlt style={{ width: 25, height: 25, marginTop: 7, marginRight: 15 }} />
-                                    </div>
-                                </div>
-                                <div className="card-body d-flex justify-content-left">
-                                    <Row className="pt-0">
-                                        <div className='col-1'>
-                                            <img src="images/Ella-Sri-Lanka.jpg" class="rounded" alt="Profile pic" style={{ width: 50, height: 50 }} />
-                                        </div>
-                                        <div className="col-11 d-flex flex-column justify-content-left">
-                                            <p className='d-flex justify-content-left pb-0 mb-0' style={{ marginLeft: 10 }}><strong>Anonymous</strong></p>
-                                            <p className='d-flex justify-content-left pb-0 mb-0' style={{ marginLeft: 10 }}>I saw some related videos on youtube</p>
-                                        </div>
-                                        <Row className='mt-1 mb-1'>
-                                            <div className='col-1 d-flex flex-column'>
-                                                <span class="badge rounded-pill bg-warning" style={{ width: 70, height: 18, fontSize: 10 }}>Top member</span>
-
-                                            </div>
-                                            <div className='col-1 d-flex flex-column justify-content-left'>
-                                                <BiTime style={{ marginTop: 1, marginLeft: 30 }} />
-                                            </div>
-
-                                        </Row>
-                                    </Row>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-3 p-0" style={{ borderRadius: 10, boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px' }}>
-                            <div className="card" style={{ borderRadius: 10, height: 150 }}>
-                                <div className='row' style={{ marginTop: 30 }}>
-                                    <div className='col-7' style={{ marginLeft: 12 }}>
-                                        <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: 17, marginTop: 10, marginLeft: 3 }}> <strong> Any Related Questions?</strong></p>
-                                    </div>
-                                    <div className='col'>
-                                        <div className='d-flex justify-content-center'>
-                                            <Button className="rounded-pill" variant="outline-warning" style={{ width: 100, height: 40, borderRadius: '1.25rem', boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px', color: 'black' }}>
-                                                <strong>Reply</strong>
-                                            </Button>
-                                            {/* <button type="button" className="rounded-pill" variant="outline-warning" style={{ width: 100, height: 40, borderRadius: '1.25rem', boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px', color: 'black' }}>Reply</button> */}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className='row mt-3'>
-                                    <div className='col d-flex justify-content-center'>
-                                        <p style={{ fontFamily: "Gill Sans", fontSize: 19, marginTop: 2, marginRight: 3 }}>0</p>
-                                        <BiHeart style={{ width: 30, height: 30 }} />
-                                    </div>
-                                    <div className='col d-flex justify-content-center'>
-                                        <p style={{ fontFamily: "Gill Sans", fontSize: 19, marginTop: 2, marginRight: 3 }}>1</p>
-                                        <BiMessageDots style={{ width: 30, height: 30 }} />
-                                    </div>
-                                    <div className='col d-flex justify-content-center'>
-                                        <BiMailSend style={{ width: 30, height: 30 }} />
-                                    </div>
-                                </div>
-
-
-                            </div>
-                        </div>
-                    </Row>
-                    <Row className="mt-3" >
-                        <div className="col">
-                        </div>
-                        <div className="col-8 ">
-                            <div className="card" style={{ borderRadius: 10, height: 150, boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px' }} >
-                                <div className="card-header d-flex justify-content-left p-0">
-                                    <div className='col-12 d-flex justify-content-between p-0'>
-                                        <p style={{ paddingTop: 10, marginTop: 5, marginLeft: 20 }}><strong>How much cost need to travel with three wheeler ?</strong></p>
-                                        <BiEditAlt style={{ width: 25, height: 25, marginTop: 7, marginRight: 15 }} />
-                                    </div>
-                                </div>
-                                <div className="card-body d-flex justify-content-left">
-                                    <Row className="pt-0">
-                                        <div className='col-1'>
-                                            <img src="images/Ella-Sri-Lanka.jpg" class="rounded" alt="Profile pic" style={{ width: 50, height: 50 }} />
-                                        </div>
-                                        <div className="col-11 d-flex flex-column justify-content-left">
-                                            <p className='d-flex justify-content-left pb-0 mb-0' style={{ marginLeft: 10 }}><strong>Madusha</strong></p>
-                                            <p className='d-flex justify-content-left pb-0 mb-0' style={{ marginLeft: 10 }}>How much for 1km ? Have any apps to contact them</p>
-                                        </div>
-                                        <Row className='mt-1 mb-1'>
-                                            <div className='col-1 d-flex flex-column'>
-                                                <span class="badge rounded-pill bg-primary" style={{ width: 60, height: 18, fontSize: 10 }}>member</span>
-
-                                            </div>
-                                            <div className='col-1 d-flex flex-column justify-content-left'>
-                                                <BiTime style={{ marginTop: 1, marginLeft: 15 }} />
-                                            </div>
-
-                                        </Row>
-                                    </Row>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-3 p-0" style={{ borderRadius: 10, boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px' }}>
-                            <div className="card" style={{ borderRadius: 10, height: 150 }}>
-                                <div className='row' style={{ marginTop: 30 }}>
-                                    <div className='col-7' style={{ marginLeft: 12 }}>
-                                        <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: 17, marginTop: 10, marginLeft: 3 }}> <strong> Any Related Questions?</strong></p>
-                                    </div>
-                                    <div className='col'>
-                                        <div className='d-flex justify-content-center'>
-                                            <Button className="rounded-pill" variant="outline-warning" style={{ width: 100, height: 40, borderRadius: '1.25rem', boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px', color: 'black' }}>
-                                                <strong>Reply</strong>
-                                            </Button>
-                                            {/* <button type="button" className="rounded-pill" variant="outline-warning" style={{ width: 100, height: 40, borderRadius: '1.25rem', boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px', color: 'black' }}>Reply</button> */}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className='row mt-3'>
-                                    <div className='col d-flex justify-content-center'>
-                                        <p style={{ fontFamily: "Gill Sans", fontSize: 19, marginTop: 2, marginRight: 3 }}>5</p>
-                                        <IoIosHeart size={30} color='red' />
-                                    </div>
-                                    <div className='col d-flex justify-content-center'>
-                                        <p style={{ fontFamily: "Gill Sans", fontSize: 19, marginTop: 2, marginRight: 3 }}>2</p>
-                                        <BiMessageDots style={{ width: 30, height: 30 }} />
-                                    </div>
-                                    <div className='col d-flex justify-content-center'>
-                                        <BiMailSend style={{ width: 30, height: 30 }} />
-                                    </div>
-                                </div>
-
-
-                            </div>
-                        </div>
-                    </Row>
-                    <Row className="mt-3" >
-                        <div className="col">
-                        </div>
-                        <div className="col-8 ">
-                            <div className="card" style={{ borderRadius: 10, height: 150, boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px' }} >
-                                <div className="card-header d-flex justify-content-left p-0">
-                                    <div className='col-12 d-flex justify-content-between p-0'>
-                                        <p style={{ paddingTop: 10, marginTop: 5, marginLeft: 20 }}><strong>How much cost need to travel with three wheeler ?</strong></p>
-                                        <BiEditAlt style={{ width: 25, height: 25, marginTop: 7, marginRight: 15 }} />
-                                    </div>
-                                </div>
-                                <div className="card-body d-flex justify-content-left">
-                                    <Row className="pt-0">
-                                        <div className='col-1'>
-                                            <img src="images/Ella-Sri-Lanka.jpg" class="rounded" alt="Profile pic" style={{ width: 50, height: 50 }} />
-                                        </div>
-                                        <div className="col-11 d-flex flex-column justify-content-left">
-                                            <p className='d-flex justify-content-left pb-0 mb-0' style={{ marginLeft: 10 }}><strong>Anonymous</strong></p>
-                                            <p className='d-flex justify-content-left pb-0 mb-0' style={{ marginLeft: 10 }}>Is safety to use public Transports ? are they expensive</p>
-                                        </div>
-                                        <Row className='mt-1 mb-1'>
-                                            <div className='col-1 d-flex flex-column'>
-                                                <span class="badge rounded-pill bg-primary" style={{ width: 60, height: 18, fontSize: 10 }}>member</span>
-
-                                            </div>
-                                            <div className='col-1 d-flex flex-column justify-content-left'>
-                                                <BiTime style={{ marginTop: 1, marginLeft: 15 }} />
-                                            </div>
-
-                                        </Row>
-                                    </Row>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-3 p-0" style={{ borderRadius: 10, boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px' }}>
-                            <div className="card" style={{ borderRadius: 10, height: 150 }}>
-                                <div className='row' style={{ marginTop: 30 }}>
-                                    <div className='col-7' style={{ marginLeft: 12 }}>
-                                        <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: 17, marginTop: 10, marginLeft: 3 }}> <strong> Any Related Questions?</strong></p>
-                                    </div>
-                                    <div className='col'>
-                                        <div className='d-flex justify-content-center'>
-                                            <Button className="rounded-pill" variant="outline-warning" style={{ width: 100, height: 40, borderRadius: '1.25rem', boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px', color: 'black' }}>
-                                                <strong>Reply</strong>
-                                            </Button>
-                                            {/* <button type="button" className="rounded-pill" variant="outline-warning" style={{ width: 100, height: 40, borderRadius: '1.25rem', boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px', color: 'black' }}>Reply</button> */}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className='row mt-3'>
-                                    <div className='col d-flex justify-content-center'>
-                                        <p style={{ fontFamily: "Gill Sans", fontSize: 19, marginTop: 2, marginRight: 3 }}>5</p>
-                                        <IoIosHeart size={30} color='red' />
-                                    </div>
-                                    <div className='col d-flex justify-content-center'>
-                                        <p style={{ fontFamily: "Gill Sans", fontSize: 19, marginTop: 2, marginRight: 3 }}>3</p>
-                                        <BiMessageDots style={{ width: 30, height: 30 }} />
-                                    </div>
-                                    <div className='col d-flex justify-content-center'>
-                                        <BiMailSend style={{ width: 30, height: 30 }} />
-                                    </div>
-                                </div>
-
-
-                            </div>
-                        </div>
-                    </Row>
-                    <Row className="mt-3" >
-                        <div className="col">
-                        </div>
-                        <div className="col-8 ">
-                            <div className="card" style={{ borderRadius: 10, height: 150, boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px' }} >
-                                <div className="card-header d-flex justify-content-left p-0">
-                                    <div className='col-12 d-flex justify-content-between p-0'>
-                                        <p style={{ paddingTop: 10, marginTop: 5, marginLeft: 20 }}><strong>How much cost need to travel with three wheeler ?</strong></p>
-                                        <BiEditAlt style={{ width: 25, height: 25, marginTop: 7, marginRight: 15 }} />
-                                    </div>
-                                </div>
-                                <div className="card-body d-flex justify-content-left">
-                                    <Row className="pt-0">
-                                        <div className='col-1'>
-                                            <img src="images/Ella-Sri-Lanka.jpg" class="rounded" alt="Profile pic" style={{ width: 50, height: 50 }} />
-                                        </div>
-                                        <div className="col-11 d-flex flex-column justify-content-left">
-                                            <p className='d-flex justify-content-left pb-0 mb-0' style={{ marginLeft: 10 }}><strong>Anonymous</strong></p>
-                                            <p className='d-flex justify-content-left pb-0 mb-0' style={{ marginLeft: 10 }}>How much for 1km ? Have any apps to contact them</p>
-                                        </div>
-                                        <Row className='mt-1 mb-1'>
-                                            <div className='col-1 d-flex flex-column'>
-                                                <span class="badge rounded-pill bg-primary" style={{ width: 60, height: 18, fontSize: 10 }}>member</span>
-
-                                            </div>
-                                            <div className='col-1 d-flex flex-column justify-content-left'>
-                                                <BiTime style={{ marginTop: 1, marginLeft: 15 }} />
-                                            </div>
-
-                                        </Row>
-                                    </Row>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-3 p-0" style={{ borderRadius: 10, boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px' }}>
-                            <div className="card" style={{ borderRadius: 10, height: 150 }}>
-                                <div className='row' style={{ marginTop: 30 }}>
-                                    <div className='col-7' style={{ marginLeft: 12 }}>
-                                        <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: 17, marginTop: 10, marginLeft: 3 }}> <strong> Any Related Questions?</strong></p>
-                                    </div>
-                                    <div className='col'>
-                                        <div className='d-flex justify-content-center'>
-                                            <Button className="rounded-pill" variant="outline-warning" style={{ width: 100, height: 40, borderRadius: '1.25rem', boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px', color: 'black' }}>
-                                                <strong>Reply</strong>
-                                            </Button>
-                                            {/* <button type="button" className="rounded-pill" variant="outline-warning" style={{ width: 100, height: 40, borderRadius: '1.25rem', boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px', color: 'black' }}>Reply</button> */}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className='row mt-3'>
-                                    <div className='col d-flex justify-content-center'>
-                                        <p style={{ fontFamily: "Gill Sans", fontSize: 19, marginTop: 2, marginRight: 3 }}>5</p>
-                                        <IoIosHeart size={30} color='red' />
-                                    </div>
-                                    <div className='col d-flex justify-content-center'>
-                                        <p style={{ fontFamily: "Gill Sans", fontSize: 19, marginTop: 2, marginRight: 3 }}>3</p>
-                                        <BiMessageDots style={{ width: 30, height: 30 }} />
-                                    </div>
-                                    <div className='col d-flex justify-content-center'>
-                                        <BiMailSend style={{ width: 30, height: 30 }} />
-                                    </div>
-                                </div>
-
-
-                            </div>
-                        </div>
-                    </Row>
+                    ))}
+                    
+                    
                     {/* 
                     <Row className="mt-3">
                         <div className="col">
@@ -665,8 +369,8 @@ const CommunityDashboard = () => {
                                 </div>
                                 <div className='card-body p-0 m-0 d-flex flex-column justify-content-left'>
                                     <Row className='d-flex justify-content-center mb-3' >
-                                    <img src='images/googlemap.png' className='w-100' style={{ height: 200 }} />
-                                        <Button className="rounded-pill" variant="outline-warning" style={{ width: 200,marginTop: 10,height: 40, borderRadius: '1.25rem', boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px', color: 'black' }}>
+                                        <img src='images/googlemap.png' className='w-100' style={{ height: 200 }} />
+                                        <Button className="rounded-pill" variant="outline-warning" style={{ width: 200, marginTop: 10, height: 40, borderRadius: '1.25rem', boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px', color: 'black' }}>
                                             <strong>View Map</strong>
                                         </Button>
                                     </Row>
