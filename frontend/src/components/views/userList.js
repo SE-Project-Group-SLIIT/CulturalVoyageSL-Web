@@ -3,8 +3,7 @@ import axios from "axios";
 import { Link, useHistory, withRouter } from "react-router-dom";
 import { Modal, Button } from "react-bootstrap";
 
-
-//import OrderUpdateModal from "./OrderUpdate";
+import UserUpdate from "./userUpdate";
 
 function UserlList() {
 
@@ -182,6 +181,19 @@ function UserlList() {
                         </div>
                     </div>
                 </Modal.Footer>
+            </Modal>
+
+            <Modal
+                show={modalUpdate}
+                onHide={() => setModalUpdate(false)}
+                size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+            >
+                <UserUpdate
+                    data={modalDataUpdate}
+                    onHide={() => setModalUpdate(false)}
+                />
             </Modal>
 
                               

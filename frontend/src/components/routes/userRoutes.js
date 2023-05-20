@@ -17,6 +17,7 @@ export const UserRouters = () => {
                 <Route path="/register" exact component={Register}/>
                 <Route path="/profile" exact component={Profile}/>
                 <Route path="/admin" exact component={UserlList}/>
+        
             </Switch>
         </Router>
     )
