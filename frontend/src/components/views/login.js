@@ -19,20 +19,31 @@ export default function Login() {
             .then((response) => {
                 console.log(response.data);
                 setLogin(response.data.login);
-                console.log(login);
-                // setId(response.data.id);
                 console.log(response.data.data[0]._id);
 
-                if (response.data.login === null) {
-                    alert("User not available")
-                } else {
-                    alert("Success...!")
-                    win.setItem('Email', Email);
-                    win.setItem('_id', id);
-
-                    history.push("/profile");
-                    window.location.reload();
+                if (response.data.data.length === 0) {
+                    alert("User not available");
+                } 
+                else{
+                    console.log(response.data.data[0].Email)
+                    if (response.data.data[0].Email === "admin@gmail.com") {
+                        alert("Admin login successful!");
+                        win.setItem('Email', Email);
+                        win.setItem('_id', id);
+                    
+                        history.push("/admin");
+                        window.location.reload();
+                    } 
+                    else {
+                        alert("User login successful!");
+                        win.setItem('Email', Email);
+                        win.setItem('_id', id);
+                    
+                        history.push("/profile");
+                        window.location.reload();
+                    }
                 }
+                
             }).catch((err) => {
                 // alert(err.response.data.error);
                 alert("User not available");
