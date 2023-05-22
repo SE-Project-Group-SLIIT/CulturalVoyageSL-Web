@@ -272,7 +272,7 @@ const CommunityDashboard = () => {
                                     </div>
                                 </div>
                                 <div className="card-body d-flex justify-content-left">
-                                    <Row className="pt-0">
+                                    {/* <Row className="pt-0">
                                         <div className='col-1'>
                                             <img src="images/Ella-Sri-Lanka.jpg" class="rounded" alt="Profile pic" style={{ width: 50, height: 50 }} />
                                         </div>
@@ -290,7 +290,20 @@ const CommunityDashboard = () => {
                                             </div>
 
                                         </Row>
-                                    </Row>
+                                    </Row> */}
+                                    <div className='d-flex flex-column'>
+                                        <div className='d-flex flex-row'>
+                                        <img src="images/Ella-Sri-Lanka.jpg" class="rounded" alt="Profile pic" style={{ width: 50, height: 50 }} />
+                                        <div className='d-flex flex-column'>
+                                        <p className='d-flex justify-content-left pb-0 mb-0' style={{ marginLeft: 10 }}><strong>Anonymous</strong></p>
+                                        <p className='d-flex justify-content-left pb-0 mb-0' style={{ marginLeft: 10 }}>{post.message}</p>
+                                        </div>
+                                        </div>
+                                        <div className='d-flex flex-row' style={{ marginTop: 2 }}>
+                                        <span class="badge rounded-pill bg-primary" style={{ width: 60, height: 18, fontSize: 10 }}>member</span>
+                                        <BiTime style={{ marginTop: 1, marginLeft: 15 }} />
+                                        </div>
+                                    </div>
 
                                 </div>
                             </div>
