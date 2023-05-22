@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import "./navbar.css";
-import { FaBars, FaRegUser } from 'react-icons/fa'
+import { FaBars,FaRegUser} from 'react-icons/fa'
 import { ImCross } from 'react-icons/im'
 
 export default function NavBar() {
