@@ -3,14 +3,14 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Login from "../views/login";
 import Register from "../views/register";
 import Profile from "../views/profile";
-import Navbar from '../views/shared/Navbar';
+import NavBar from "../views/shared/NavBar";
 import UserlList from "../views/userList";
 
 export const UserRouters = () => {
     return(
         
         <Router>
-            <Navbar/>
+            <NavBar/>
             <Switch>
                 
                 <Route path="/login" exact component={Login}/>

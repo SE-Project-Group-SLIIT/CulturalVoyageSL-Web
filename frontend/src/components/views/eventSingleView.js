@@ -8,6 +8,8 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import { FaRegFilePdf } from "react-icons/fa";
 import { singleEventsService } from "../services/eventService";
+import NavBar from "./shared/NavBar";
+import FooterBar from "./shared/FooterBar";
 
 const EventSingleView = (props) => {
 
@@ -46,6 +48,7 @@ const EventSingleView = (props) => {
     <div>
       {eventsDetails &&
       <Container>
+        <NavBar />
         <Row>
           <Col>
             <img
@@ -59,11 +62,11 @@ const EventSingleView = (props) => {
 
         <Navbar bg="dark" variant="dark">
           <Container>
-            <Navbar.Brand href="#home">Events</Navbar.Brand>
+            <Navbar.Brand href="/event">Events</Navbar.Brand>
             <Nav className="me-auto">
-              <Nav.Link href="#home">Dashboard</Nav.Link>
-              <Nav.Link href="#features">All Events</Nav.Link>
-              <Nav.Link href="#pricing">Events Calander</Nav.Link>
+              <Nav.Link href="/event">Dashboard</Nav.Link>
+              <Nav.Link href="/eventAll">All Events</Nav.Link>
+              <Nav.Link href="/eventCalendar">Events Calendar</Nav.Link>
             </Nav>
           </Container>
         </Navbar>
@@ -198,6 +201,7 @@ const EventSingleView = (props) => {
             </Row>
           </Col>
         </Row>
+        <FooterBar/>
       </Container>
 }
     </div>

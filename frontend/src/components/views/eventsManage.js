@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./table.css";
-import { Container, Button,Modal } from "react-bootstrap";
+import { Container, Button,Modal,Row } from "react-bootstrap";
 import { deleteEventsService,getAllEventsService } from "../services/eventService";
 import Swal from 'sweetalert2'
 import UpdateEventModal from "./updateEventModal";
+import { FaPlus } from "react-icons/fa";
+import NavBar from "./shared/NavBar";
+import FooterBar from "./shared/FooterBar";
 
 const EventsManage = () => {
   const [eventsDetails, setEventsDetails] = useState([]);
@@ -81,7 +84,11 @@ const EventsManage = () => {
   return (
     <div>
       <Container>
-        <h2 style={{ marginTop: "50px" }}>All Events </h2>
+        <NavBar/>
+        <br></br>
+        <br></br>
+        <h2 style={{ marginTop: "10px" }}>All Events </h2>
+          <div  style={{marginBottom:'30px',marginLeft:'1075px'}} > <Button href="/addEvent" color="white" style={{backgroundColor:'#114295' , border:'#114295'}}><FaPlus /> Add New Event</Button></div>
         <ul class="responsive-table">
           <li class="table-header">
             <div class="col col-1">Event Name</div>
@@ -163,6 +170,7 @@ const EventsManage = () => {
 
 
         </ul>
+        <FooterBar/>
       </Container>
     </div>
   );

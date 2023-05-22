@@ -10,6 +10,8 @@ import { FaSearch } from "react-icons/fa";
 import { getAllEventsService,searchEventsService,filterEventsService} from "../services/eventService";
 import { useLocation, useHistory } from "react-router-dom";
 import EventsSearchBar from "./eventsSearchBar";
+import NavBar from "./shared/NavBar";
+import FooterBar from "./shared/FooterBar";
 // import NavBar from './shared/NavBar';
 
 const Events = (props) => {
@@ -73,6 +75,7 @@ const Events = (props) => {
   return (
     <div>
       <Container>
+        <NavBar/>
         <Row>
           <Col>
             <img
@@ -85,11 +88,11 @@ const Events = (props) => {
 
         <Navbar bg="dark" variant="dark">
           <Container>
-            <Navbar.Brand href="#home">Events</Navbar.Brand>
+            <Navbar.Brand href="/event">Events</Navbar.Brand>
             <Nav className="me-auto">
-              <Nav.Link href="#home">Dashboard</Nav.Link>
-              <Nav.Link href="#features">All Events</Nav.Link>
-              <Nav.Link href="#pricing">Events Calander</Nav.Link>
+              <Nav.Link href="/event">Dashboard</Nav.Link>
+              <Nav.Link href="/eventAll">All Events</Nav.Link>
+              <Nav.Link href="/eventCalendar">Events Calander</Nav.Link>
             </Nav>
           </Container>
         </Navbar>
@@ -192,6 +195,7 @@ const Events = (props) => {
             );
           })}
         </Row>
+        <FooterBar/>
       </Container>
     </div>
   );

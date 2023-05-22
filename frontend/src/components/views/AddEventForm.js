@@ -11,6 +11,8 @@ import Nav from "react-bootstrap/Nav";
 import { ProgressBar } from "react-bootstrap";
 import DropzoneArea from "../../dropZoneComponents/dropZone";
 import { addEventsService } from "../services/eventService";
+import NavBar from "./shared/NavBar";
+import FooterBar from "./shared/FooterBar";
 
 const AddEventForm = () => {
   const [eventName, seteventName] = useState("");
@@ -68,6 +70,10 @@ const AddEventForm = () => {
     console.log("event", event);
     let response = await addEventsService(event);
     console.log("responseEvents>>>", response);
+    if(response){
+      alert("Successfully Added..")
+      window.location.replace('/eventManage')
+     }
   };
 
   const sendData = (data) => {
@@ -119,7 +125,8 @@ const AddEventForm = () => {
   };
 
   return (
-    <div>
+    <div className="container">
+      <NavBar/>
       <section
         style={{
           padding: "50px 20px 35px 20px",
@@ -281,9 +288,9 @@ const AddEventForm = () => {
             </label>
           </div>
           <div class="form-field col-lg-3">
-            <label class="label" for="company">
+            {/* <label class="label" for="company">
               Image 1{" "}
-            </label>
+            </label> */}
             <div>
               <DropzoneArea sendData={sendData} sendProgress={sendProgress} />
               {/* {imageOne ? imageOne.substring(0, 30) + "..." : ''} */}
@@ -301,9 +308,9 @@ const AddEventForm = () => {
             </div>
           </div>
           <div class="form-field col-lg-3">
-            <label class="label" for="company">
+            {/* <label class="label" for="company">
               Image 2{" "}
-            </label>
+            </label> */}
             <div>
               <DropzoneArea
                 sendData={sendDataOne}
@@ -329,9 +336,9 @@ const AddEventForm = () => {
           </div>
 
           <div class="form-field col-lg-3">
-            <label class="label" for="company">
+            {/* <label class="label" for="company">
               Image 3
-            </label>
+            </label> */}
             <div>
               <DropzoneArea
                 sendData={sendDataTwo}
@@ -356,9 +363,9 @@ const AddEventForm = () => {
             </div>
           </div>
           <div class="form-field col-lg-3 ">
-            <label class="label" for="company">
+            {/* <label class="label" for="company">
               Agenda/Guide
-            </label>
+            </label> */}
             <div style={{ marginLeft: 58 }}>
               <DropzoneArea
                 sendData={sendDataThree}
@@ -393,8 +400,10 @@ const AddEventForm = () => {
           </div>
         </form>
       </section>
+      <FooterBar/>
     </div>
   );
 };
 
 export default AddEventForm;
+

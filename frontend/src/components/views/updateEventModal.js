@@ -282,9 +282,9 @@ const UpdateEventModal = (props) => {
             </label>
           </div>
           <div class="form-field col-lg-3">
-            <label class="label" for="company">
+            {/* <label class="label" for="company">
               Image 1{" "}
-            </label>
+            </label> */}
             <div>
               <DropzoneArea sendData={sendData} sendProgress={sendProgress} />
               {/* {imageOne ? imageOne.substring(0, 30) + "..." : ''} */}
@@ -302,9 +302,9 @@ const UpdateEventModal = (props) => {
             </div>
           </div>
           <div class="form-field col-lg-3">
-            <label class="label" for="company">
+            {/* <label class="label" for="company">
               Image 2{" "}
-            </label>
+            </label> */}
             <div>
               <DropzoneArea
                 sendData={sendDataOne}
@@ -330,9 +330,9 @@ const UpdateEventModal = (props) => {
           </div>
 
           <div class="form-field col-lg-3">
-            <label class="label" for="company">
+            {/* <label class="label" for="company">
               Image 3
-            </label>
+            </label> */}
             <div>
               <DropzoneArea
                 sendData={sendDataTwo}
@@ -357,9 +357,9 @@ const UpdateEventModal = (props) => {
             </div>
           </div>
           <div class="form-field col-lg-3 ">
-            <label class="label" for="company">
+            {/* <label class="label" for="company">
               Agenda/Guide
-            </label>
+            </label> */}
             <div style={{ marginLeft: 58 }}>
               <DropzoneArea
                 sendData={sendDataThree}
