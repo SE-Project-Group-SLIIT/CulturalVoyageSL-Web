@@ -180,43 +180,43 @@ const CommunityDashboard = () => {
                     <Row className='d-flex justify-content-center'>
                         <div className='col d-flex justify-content-center'>
                             <div className="card-new d-block justify-content-center" style={{ backgroundColor: '#FFF5F5', borderRadius: 10, width: 100, height: 100, boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px' }} >
-                                <GoLocation style={{ width: 70, height: 70, marginTop: 15 }} />
+                                <center><GoLocation style={{ width: 70, height: 70, marginTop: 15 }} /></center>
                                 <p style={{ marginTop: 15 }}>Places</p>
                             </div>
                         </div>
                         <div className='col d-flex justify-content-center'>
                             <div className="card-new d-block justify-content-center" style={{ backgroundColor: '#FF6C6C', borderRadius: 10, width: 100, height: 100, boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px' }} >
-                                <BsCloudSun style={{ width: 70, height: 70, marginTop: 15 }} />
+                            <center><BsCloudSun style={{ width: 70, height: 70, marginTop: 15 }} /></center>
                                 <p style={{ marginTop: 15 }}>Weather</p>
                             </div>
                         </div>
                         <div className='col d-flex justify-content-center'>
                             <div className="card-new d-block justify-content-center" style={{ backgroundColor: '#3480FF', borderRadius: 10, width: 100, height: 100, boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px' }} >
-                                <MdOutlineSportsCricket style={{ width: 70, height: 70, marginTop: 15, color: 'white' }} />
+                            <center> <MdOutlineSportsCricket style={{ width: 70, height: 70, marginTop: 15, color: 'white' }} /></center>
                                 <p style={{ marginTop: 15 }}>Sports</p>
                             </div>
                         </div>
                         <div className='col d-flex justify-content-center'>
                             <div className="card-new d-block justify-content-center" style={{ backgroundColor: '#011F53', borderRadius: 10, width: 100, height: 100, boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px' }} >
-                                <BiNews style={{ width: 70, height: 70, marginTop: 15, color: 'white' }} />
+                            <center> <BiNews style={{ width: 70, height: 70, marginTop: 15, color: 'white' }} /></center>
                                 <p style={{ marginTop: 15 }}>News</p>
                             </div>
                         </div>
                         <div className='col d-flex justify-content-center'>
                             <div className="card-new d-block justify-content-center" style={{ backgroundColor: '#730056', borderRadius: 10, width: 100, height: 100, boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px' }} >
-                                <BsFileEarmarkPerson style={{ width: 70, height: 70, marginTop: 15, color: 'white' }} />
+                            <center>   <BsFileEarmarkPerson style={{ width: 70, height: 70, marginTop: 15, color: 'white' }} /></center>
                                 <p style={{ marginTop: 15 }}>Guide</p>
                             </div>
                         </div>
                         <div className='col d-flex justify-content-center'>
                             <div className="card-new d-block justify-content-center" style={{ backgroundColor: '#D80574', borderRadius: 10, width: 100, height: 100, boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px' }} >
-                                <BsFillCarFrontFill style={{ width: 70, height: 70, marginTop: 15 }} />
+                            <center> <BsFillCarFrontFill style={{ width: 70, height: 70, marginTop: 15 }} /></center>
                                 <p style={{ marginTop: 15 }}>Transport</p>
                             </div>
                         </div>
                         <div className='col d-flex justify-content-center'>
                             <div className="card-new d-block justify-content-center" style={{ backgroundColor: '#FFE0F0', borderRadius: 10, width: 100, height: 100, boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px' }} >
-                                <RiHotelLine style={{ width: 70, height: 70, marginTop: 15 }} />
+                            <center> <RiHotelLine style={{ width: 70, height: 70, marginTop: 15 }} /></center>
                                 <p style={{ marginTop: 15 }}>Hotels</p>
                             </div>
                         </div>

@@ -8,6 +8,10 @@
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
     "@material-ui/core": "^4.12.4",
+<<<<<<< HEAD
+=======
+    "@material-ui/icons": "^4.11.3",
+>>>>>>> 5ae58e02c965b7a7347d001cf8a2212594c72dbf
     "@react-google-maps/api": "^2.18.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
