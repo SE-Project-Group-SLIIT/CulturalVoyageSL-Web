@@ -1,6 +1,6 @@
 .get-in-touch {
-  max-width: 985px;
-  margin: 40px auto;
+  max-width: 1500px;
+  margin: 30px auto;
   position: relative;
 }
 
@@ -57,7 +57,7 @@ input[type="time"]::-webkit-time-picker-updown-button {
   height: 36px;
   border-width: 0 0 2px 0;
   border-color: #5543ca;
-  font-size: 18px;
+  font-size: 12px;
   line-height: 26px;
   font-weight: 400;
 }
@@ -73,7 +73,7 @@ input[type="time"]::-webkit-time-picker-updown-button {
   position: absolute;
   left: 20px;
   bottom: 25px;
-  font-size: 15px;
+  /* font-size: 12px; */
   line-height: 26px;
   font-weight: 400;
   color: #5543ca;

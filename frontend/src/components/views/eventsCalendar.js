@@ -22,6 +22,7 @@ import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { getAllEventsService } from "../services/eventService";
 import NavBar from "./shared/NavBar";
+import FooterBar from "./shared/FooterBar";
 
 // const locales = {
 //   'en-US': {
@@ -71,30 +72,6 @@ const EventsCalendar = () => {
     console.log(">>>>", calenederEvents);
   };
 
-  // const getEventStyle = (calenederEvents, start, end, isSelected) => {
-  //   let backgroundColor = ''
-  //   switch (calenederEvents.eventType) {
-  //     case 'conference':
-  //       backgroundColor = 'Pink'
-  //       break
-  //     case 'entertain':
-  //       backgroundColor = 'lightGreen'
-  //       break
-  //     case 'Festival':
-  //       backgroundColor = 'lightSkyBlue'
-  //       break
-  //     case 'religious':
-  //       backgroundColor = 'lightSkyBlue'
-  //       break
-  //     default:
-  //       backgroundColor = 'lightBlue'
-  //   }
-  //   return {
-  //     style: {
-  //       backgroundColor: backgroundColor
-  //     }
-  //   }
-  // }
 
   const getEventStyle = (event) => {
     console.log("color", event);
@@ -147,11 +124,11 @@ const EventsCalendar = () => {
 
         <Navbar bg="dark" variant="dark">
           <Container>
-            <Navbar.Brand href="#home">Events</Navbar.Brand>
+            <Navbar.Brand href="/event">Events</Navbar.Brand>
             <Nav className="me-auto">
-              <Nav.Link href="#home">Dashboard</Nav.Link>
-              <Nav.Link href="#features">All Events</Nav.Link>
-              <Nav.Link href="#pricing">Events Calander</Nav.Link>
+              <Nav.Link href="/event">Dashboard</Nav.Link>
+              <Nav.Link href="/eventAll">All Events</Nav.Link>
+              <Nav.Link href="/eventCalendar">Events Calander</Nav.Link>
             </Nav>
           </Container>
         </Navbar>
@@ -187,6 +164,7 @@ const EventsCalendar = () => {
               style={{
                 width: "15rem",
                 boxShadow: "rgba(0, 0, 0, 0.1) 0px 4px 12px",
+                marginBottom:'10px'
               }}
             >
               <Card.Header className="bg-dark text-white">
@@ -201,7 +179,7 @@ const EventsCalendar = () => {
                   <FaCalendar
                     style={{
                       marginTop: "4px",
-                      marginLeft: "117px",
+                      marginLeft: "116px",
                       fill: "lightSkyBlue",
                     }}
                   />
@@ -221,7 +199,7 @@ const EventsCalendar = () => {
                   <FaCalendar
                     style={{
                       marginTop: "4px",
-                      marginLeft: "101px",
+                      marginLeft: "102px",
                       fill: "lightsteelblue",
                     }}
                   />
@@ -231,7 +209,7 @@ const EventsCalendar = () => {
                   <FaCalendar
                     style={{
                       marginTop: "4px",
-                      marginLeft: "88px",
+                      marginLeft: "90px",
                       fill: "lightGreen",
                     }}
                   />
@@ -248,6 +226,35 @@ const EventsCalendar = () => {
                 </ListGroup.Item>
               </ListGroup>
             </Card>
+
+            <Card
+              style={{
+                width: "15rem",
+                boxShadow: "rgba(0, 0, 0, 0.1) 0px 4px 12px",
+              }}
+            >
+              <Card.Header className="bg-dark text-white">
+                Events Count
+              </Card.Header>
+            <ListGroup
+                style={{ backgroundColor: "gostWhite" }}
+                variant="flush"
+              >
+                <ListGroup.Item className="d-flex justify-content-left">
+                <FaCalendar
+                    style={{
+                      marginTop: "3px",
+                      marginRight: "10px",
+                      // fill: "lightSkyBlue",
+                    }}
+                  />
+                  Total Events:{" "} &nbsp; &nbsp; {calenederEvents.length}
+              
+                </ListGroup.Item>
+               
+              </ListGroup>
+            </Card>
+
           </Col>
           <Col xs={9}>
             {console.log("calender.evnts>>>", calenederEvents)}
@@ -267,6 +274,7 @@ const EventsCalendar = () => {
             />
           </Col>
         </Row>
+        <FooterBar/>
       </Container>
     </div>
   );

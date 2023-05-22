@@ -9,15 +9,15 @@ export default function NavBar() {
     const [MobileView, setMobileView] = useState(false);
 
     return (
-        <nav className='navbar'>
+        <nav className='navbar' >
             <div className='logo'>
             <img src='images/logo.png' alt="Logo" style={{ width: 300, height: 80 }}/>
             </div>
             <ul className={MobileView ? "nav-links-mobile" : "nav-links"} onClick={() => setMobileView(false)}>
                 <Link to="#"><li>Home</li></Link>
-                <Link to="#"><li>About</li></Link>
-                <Link to="#"><li>Contact</li></Link>
-                <Link to="#"><li>Services</li></Link>
+                <Link to="#"><li>Sites</li></Link>
+                <Link to="#"><li>Tour Guiding</li></Link>
+                <Link to="/event" onClick={()=>window.location.replace('/event')} ><li>Events</li></Link>
                 <Link to="#"><li><FaRegUser /></li></Link>
             </ul>
             <button className='mobile-menu-icon' onClick={() => setMobileView(!MobileView)}>

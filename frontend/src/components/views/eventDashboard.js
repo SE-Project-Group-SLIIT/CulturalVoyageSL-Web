@@ -6,6 +6,8 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
+import NavBar from "./shared/NavBar";
+import FooterBar from "./shared/FooterBar";
 
 const EventDashboard = () => {
   const [transformStyle, setTransformStyle] = useState("scale(1)");
@@ -27,6 +29,7 @@ const EventDashboard = () => {
   return (
     <div>
       <Container>
+        <NavBar/>
         <Row>
           <Col>
             <img
@@ -37,13 +40,13 @@ const EventDashboard = () => {
           </Col>
         </Row>
 
-        <Navbar bg="dark" variant="dark">
+        <Navbar bg="dark" variant="dark" >
           <Container>
-            <Navbar.Brand href="#home">Events</Navbar.Brand>
+            <Navbar.Brand href="#">Events</Navbar.Brand>
             <Nav className="me-auto">
-              <Nav.Link href="#home">Dashboard</Nav.Link>
-              <Nav.Link href="#features">All Events</Nav.Link>
-              <Nav.Link href="#pricing">Events Calander</Nav.Link>
+              <Nav.Link href="#">Dashboard</Nav.Link>
+              <Nav.Link href="/eventAll">All Events</Nav.Link>
+              <Nav.Link href="/eventCalendar">Events Calander</Nav.Link>
             </Nav>
           </Container>
         </Navbar>
@@ -274,7 +277,7 @@ const EventDashboard = () => {
 
             <Row>
               {" "}
-              <Button variant="outline-secondary" size="lg">
+              <Button variant="outline-secondary" size="lg" href="/eventCalendar">
                 Event Calander
               </Button>
             </Row>
@@ -450,6 +453,7 @@ const EventDashboard = () => {
             </Card.Body>
           </Card>
         </Row>
+        <FooterBar/>
       </Container>
     </div>
   );
