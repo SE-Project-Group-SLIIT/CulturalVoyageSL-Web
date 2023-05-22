@@ -401,8 +401,10 @@ const AddEventForm = () => {
         </form>
       </section>
       <FooterBar/>
+      
     </div>
   );
 };
 
 export default AddEventForm;
+
