@@ -10,6 +10,7 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import Button from "react-bootstrap/esm/Button";
 import NavBar from "../shared/Navbar";
+import { getSiteCategoryService } from "../../services/siteService";
 
 const HistoricalSites = () => {
   const [historicalSiteDetails, setHistoricalSiteDeatils] = useState([]);
@@ -21,18 +22,25 @@ const HistoricalSites = () => {
     getHistoricalSites();
   }, []);
 
-  function getHistoricalSites() {
+  async function getHistoricalSites() {
     console.log("get historical sites...");
-    axios
-      .get(`http://localhost:5000/site/viewSites/Historical Site`)
-      .then((res) => {
-        console.log(res.data.data);
 
-        setHistoricalSiteDeatils(res.data.data);
-      })
-      .catch((error) => {
-        console.log("error", error);
-      });
+    let category = "Historical Site";
+    let response = await getSiteCategoryService(category);
+    if (response.ok) {
+      console.log(response.data.data);
+      setHistoricalSiteDeatils(response.data.data);
+    }
+    // axios
+    //   .get(`http://localhost:5000/site/viewSites/Historical Site`)
+    //   .then((res) => {
+    //     console.log(res.data.data);
+
+    //     setHistoricalSiteDeatils(res.data.data);
+    //   })
+    //   .catch((error) => {
+    //     console.log("error", error);
+    //   });
   }
 
   const viewSite = async (data) => {
@@ -99,7 +107,7 @@ const HistoricalSites = () => {
           <hr></hr>
         </Row>
 
-        <Row>
+        {/* <Row>
           <div class="row table-head-search">
             <div className="col-md-8"></div>
             <div className="col">
@@ -128,7 +136,7 @@ const HistoricalSites = () => {
               </div>
             </div>
           </div>
-        </Row>
+        </Row> */}
 
         <Row
           style={{
@@ -138,38 +146,17 @@ const HistoricalSites = () => {
             flexDirection: "row",
             justifyContent: "flex-start",
             alignItems: "center",
-            paddingLeft: "200px",
-            paddingRight: "200px",
+            paddingLeft: "100px",
+            paddingRight: "100px",
           }}
         >
           {historicalSiteDetails.map((sites) => {
             return (
-              // <Card style={{ width: '18rem', display: 'block', maxWidth: '480px', backgroundColor: 'ghostwhite', borderRadius: "1.75rem", padding: " .75rem", boxShadow: "0 16px 24px -12px rgba(black,0.15)", border: 'none', marginRight: '40px', marginBottom: '50px', height: '35rem' }} >
-              //     {console.log("historical sites", sites)}
-              //     <Card.Img style={{
-              //         textAlign: "center",
-              //         borderRadius: "1.25rem",
-              //         Container: "contents",
-              //         fit: "fill-box",
-              //         height: '12rem',
-              //         marginBottom: "1rem",
-              //         boxShadow: "0 16px 24px -12px rgba(black,0.15)"
-              //     }}
-              //         variant="top" src={sites.SiteImage1.url} ></Card.Img>
-              //     <Card.Body style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-              //         <Card.Title>{sites.SiteName}</Card.Title>
-              //         <Card.Text style={{ textAlign: 'left' }}>
-              //             {sites.Description.substring(0, 200)}...
-              //         </Card.Text>
-
-              //         <Button style={{ borderRadius: '1.25rem' }} variant="primary" onClick={()=>{viewSite(sites)}}>Read More</Button>
-              //     </Card.Body>
-              // </Card>
               <div
                 className="Card"
                 type="button"
                 // border="info"
-                style={{ height: "300px", width: "15rem" }}
+                style={{ height: "300px", width: "15rem", margin: "20px" }}
                 onClick={() => {
                   viewSite(sites);
                 }}
@@ -186,22 +173,11 @@ const HistoricalSites = () => {
                       alt="sites"
                     />
                   </div>
-                  <div
-                    className="intro"
-                    style={{
-                      height: "55px",
-                      width: "216px",
-                      padding: "6px",
-                      boxSizing: "border-box",
-                      position: "absolute",
-                      background: "rgb(27, 27, 27, .5)",
-                      color: "white",
-                      bottom: "-434px",
-                      borderRadius: "10px",
-                    }}
-                  >
+                  <div className="intro-title">
                     <h1 style={{ fontSize: "20px" }}>{sites.SiteName}</h1>
-                    <p
+                  </div>
+                  {/* <h1 style={{ fontSize: "20px" }}>{sites.SiteName}</h1> */}
+                  {/* <p
                       style={{
                         fontSize: "15px",
                         margin: "20px",
@@ -210,8 +186,8 @@ const HistoricalSites = () => {
                       }}
                     >
                       {sites.Description.substring(0, 200)}...
-                    </p>
-                  </div>
+                    </p> */}
+                  {/* </div> */}
                 </Card.Body>
               </div>
             );

@@ -10,9 +10,14 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import Button from "react-bootstrap/esm/Button";
 import NavBar from "../shared/Navbar";
+import {
+  getAllSiteService,
+  searchSiteService,
+} from "../../services/siteService";
 
 const AllSites = () => {
   const [siteDetails, setsiteDetails] = useState([]);
+  const [search, setSearch] = useState("");
 
   let history = useHistory();
 
@@ -21,18 +26,24 @@ const AllSites = () => {
     getHistoricalSites();
   }, []);
 
-  function getHistoricalSites() {
+  async function getHistoricalSites() {
     console.log("get all sites...");
-    axios
-      .get(`http://localhost:5000/site/allSites`)
-      .then((res) => {
-        console.log(res.data.data);
 
-        setsiteDetails(res.data.data);
-      })
-      .catch((error) => {
-        console.log("error", error);
-      });
+    let response = await getAllSiteService();
+    if (response.ok) {
+      console.log(response.data.data);
+      setsiteDetails(response.data.data);
+    }
+    // axios
+    //   .get(`http://localhost:5000/site/allSites`)
+    //   .then((res) => {
+    //     console.log(res.data.data);
+
+    //     setsiteDetails(res.data.data);
+    //   })
+    //   .catch((error) => {
+    //     console.log("error", error);
+    //   });
   }
 
   const viewSite = async (data) => {
@@ -42,6 +53,22 @@ const AllSites = () => {
       state: data,
     });
   };
+
+  // async function searchSites(site) {
+  //   let response = await searchSiteService(site);
+  //   if (response.ok) {
+  //     console.log(response.data.data);
+  //     setsiteDetails(response.data.data);
+  //   }
+  // }
+
+  // const handleSearch = async() => {
+  //   let response = await searchSiteService(search);
+  // if (response.ok) {
+  //   console.log(response.data.data);
+  //   setsiteDetails(response.data.data);
+  // }
+  // };
 
   return (
     <div>
@@ -97,7 +124,7 @@ const AllSites = () => {
           <hr></hr>
         </Row>
 
-        <Row>
+        {/* <Row>
           <div class="row table-head-search">
             <div className="col-md-8"></div>
             <div className="col">
@@ -106,9 +133,12 @@ const AllSites = () => {
                   <form id="contactform" class="form">
                     <input
                       class="search_input"
-                      type="text"
+                      type="search"
                       name=""
                       placeholder="Search..."
+                      // onChange={(e)=>setSearch(e.target.value)}
+                      value={search}
+                      onChange={(e) => setSearch(e.target.value)}
                       required
                     />
                     <button
@@ -116,17 +146,18 @@ const AllSites = () => {
                       type="submit"
                       id="submit"
                       name="submit"
+                      onClick={()=>handleSearch()}
                       style={{ marginLeft: "263px", marginTop: "-30px" }}
                     >
-                      {" "}
-                      &nbsp;<FaSearch></FaSearch>
+                      {/* {" "} */}
+        {/* &nbsp;<FaSearch></FaSearch>
                     </button>
                   </form>
                 </div>
               </div>
             </div>
           </div>
-        </Row>
+        </Row> */}
 
         <Row
           style={{
@@ -136,38 +167,17 @@ const AllSites = () => {
             flexDirection: "row",
             justifyContent: "flex-start",
             alignItems: "center",
-            paddingLeft: "200px",
-            paddingRight: "200px",
+            paddingLeft: "100px",
+            paddingRight: "100px",
           }}
         >
           {siteDetails.map((sites) => {
             return (
-              // <Card style={{ width: '18rem', display: 'block', maxWidth: '480px', backgroundColor: 'ghostwhite', borderRadius: "1.75rem", padding: " .75rem", boxShadow: "0 16px 24px -12px rgba(black,0.15)", border: 'none', marginRight: '40px', marginBottom: '50px', height: '35rem' }} >
-              //     {console.log("religious sites", sites)}
-              //     <Card.Img style={{
-              //         textAlign: "center",
-              //         borderRadius: "1.25rem",
-              //         Container: "contents",
-              //         fit: "fill-box",
-              //         height: '12rem',
-              //         marginBottom: "1rem",
-              //         boxShadow: "0 16px 24px -12px rgba(black,0.15)"
-              //     }}
-              //         variant="top" src={sites.SiteImage1.url}></Card.Img>
-              //     <Card.Body style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-              //         <Card.Title>{sites.SiteName}</Card.Title>
-              //         <Card.Text style={{ textAlign: 'left' }}>
-              //             {sites.Description.substring(0, 200)}...
-              //         </Card.Text>
-
-              //         <Button style={{ borderRadius: '1.25rem' }} variant="primary" onClick={()=>{viewSite(sites)}}>Read More</Button>
-              //     </Card.Body>
-              // </Card>
               <div
                 className="Card"
                 type="button"
                 // border="info"
-                style={{ height: "300px", width: "15rem" }}
+                style={{ height: "300px", width: "15rem", margin: "20px" }}
                 onClick={() => {
                   viewSite(sites);
                 }}
@@ -184,22 +194,12 @@ const AllSites = () => {
                       alt="sites"
                     />
                   </div>
-                  <div
-                    className="intro"
-                    style={{
-                      height: "55px",
-                      width: "216px",
-                      padding: "6px",
-                      boxSizing: "border-box",
-                      position: "absolute",
-                      background: "rgb(27, 27, 27, .5)",
-                      color: "white",
-                      bottom: "-523px",
-                      borderRadius: "10px",
-                    }}
-                  >
+
+                  <div className="intro-title">
                     <h1 style={{ fontSize: "20px" }}>{sites.SiteName}</h1>
-                    <p
+                  </div>
+                  {/* <h1 style={{ fontSize: "20px" }}>{sites.SiteName}</h1> */}
+                  {/* <p
                       style={{
                         fontSize: "15px",
                         margin: "20px",
@@ -208,8 +208,8 @@ const AllSites = () => {
                       }}
                     >
                       {sites.Description.substring(0, 200)}...
-                    </p>
-                  </div>
+                    </p> */}
+                  {/* </div> */}
                 </Card.Body>
               </div>
             );
