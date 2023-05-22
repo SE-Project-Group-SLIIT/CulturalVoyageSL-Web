@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./table.css";
-import { Container, Button,Modal } from "react-bootstrap";
+import { Container, Button,Modal,Row } from "react-bootstrap";
 import { deleteEventsService,getAllEventsService } from "../services/eventService";
 import Swal from 'sweetalert2'
 import UpdateEventModal from "./updateEventModal";
@@ -88,7 +88,7 @@ const EventsManage = () => {
         <br></br>
         <br></br>
         <h2 style={{ marginTop: "10px" }}>All Events </h2>
-          <div  style={{marginBottom:'30px',marginLeft:'1080px'}} >  <Button href="/addEvent" color="white" style={{backgroundColor:'#114295' , border:'#114295'}}><FaPlus /> &nbsp; Add New Event</Button></div>
+          <div  style={{marginBottom:'30px',marginLeft:'1075px'}} > <Button href="/addEvent" color="white" style={{backgroundColor:'#114295' , border:'#114295'}}><FaPlus /> Add New Event</Button></div>
         <ul class="responsive-table">
           <li class="table-header">
             <div class="col col-1">Event Name</div>
