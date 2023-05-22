@@ -73,28 +73,19 @@ function UserlList() {
             
             
             
-            <div className="table-emp ">
-                <div class="row table-head mt-3">
-                    <div class="col">
-                        <center><h3 className="float-left">List of Users</h3></center>
+            <div className="table-emp ml-5 mr-5">
+                <div class="ml-5 mr-5">
+                    <div class="py-5 text-center">
+                        <h3 className="float-left">List of Users</h3>
                     </div>
                     
                     
-                </div>
-                <div class="row table-head-search">
-                    <div className="col-md-8"></div>
-
-                    <div className="col">
-                        <div class="input-group input-group-search">
-                           
-                        </div>
-                    </div>
-
-                </div>
+                
+                
 
 
-                <table class="table table-hover">
-                    <thead class="thead-dark">
+                <table class="table" id="myTable">
+                    <thead class="table-success">
                         <tr>
                             <th>Name</th>
                             <th>Phone no</th>
@@ -143,6 +134,7 @@ function UserlList() {
                         })}
                     </tbody>
                 </table>
+                </div>
             </div>
 
             
