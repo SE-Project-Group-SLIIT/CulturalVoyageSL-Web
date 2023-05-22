@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import "./navbar.css";
-import { FaBars } from 'react-icons/fa'
+import { FaBars, FaRegUser} from 'react-icons/fa'
 import { ImCross } from 'react-icons/im'
 
 export default function NavBar() {
@@ -18,6 +18,7 @@ export default function NavBar() {
                 <Link to="#"><li>About</li></Link>
                 <Link to="/login"><li>Login</li></Link>
                 <Link to="/register"><li>Register</li></Link>
+                <Link to="#"><li><FaRegUser /></li></Link>
             </ul>
             <button className='mobile-menu-icon' onClick={() => setMobileView(!MobileView)}>
                 {MobileView ? <ImCross /> : <FaBars />}
