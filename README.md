@@ -1,2 +1,0 @@
-# CulturalVoyageSL-Web
-CulturalVoyageSL Web
