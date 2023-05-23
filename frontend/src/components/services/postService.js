@@ -36,6 +36,24 @@ export const addPostService = async (newPost) => {
     }
 
 }
+export const getPostsBySearch = async () => {
+
+    try {
+        let response = await axios.get(BASE_URL + '/view');
+
+        return {
+            ok: true,
+            data: response.data.data
+        }
+    } catch (error) {
+        return {
+            ok: false,
+            error: error
+        }
+    }
+
+}
+
 
 
 // export const createProductService = async (newSeller) => {
