@@ -10,7 +10,7 @@ import {
     Text,
 } from '@chakra-ui/react'
 import { FaLocationArrow, FaTimes } from 'react-icons/fa'
-import {BsCarFront} from 'react-icons/bs'
+import { BsCarFront } from 'react-icons/bs'
 import NavBar from '../shared/NavBar';
 import {
     useJsApiLoader,
@@ -156,12 +156,56 @@ function CommunityMap() {
                 <div class="col-1"></div>
             </div>
             <div class="row">
-                <div class="col-3"></div>
-                <div class="col-6 justify-content-center">
+                <div class="col-4"></div>
+                <div class="col-4 justify-content-center">
                     {distance &&
-                        <p><BsCarFront />TUK cost is: {parseFloat(distance) * 120}</p>}
+                        <div className="card  p-0 mt-3">
+                            <div className="card-header text-white  bg-dark">
+                            <h3>Travel Details</h3>
+                            </div>
+                            <div className='card-body p-0 m-0 d-flex flex-column justify-content-center'>
+                                <Row style={{ marginRight: 20 }}>
+                                    <h4>Travel Vehicle Details</h4>
+
+                                    <div className='d-flex flex-row justify-content-center'>
+                                        <img src="https://img.freepik.com/free-vector/flat-design-indian-man-driving-van_23-2149757883.jpg?size=626&ext=jpg&ga=GA1.2.1633300079.1682609697&semt=ais" class="rounded" alt="Profile pic" style={{ width: 80, height: 80 }} />
+                                        <div  className='d-flex flex-column justify-content-center'>
+                                        <p className='d-flex justify-content-left pb-0 mb-0' style={{ marginLeft: 10 }}><strong>three wheeler</strong></p>
+                                        <p className='d-flex justify-content-left pb-0 mb-0' style={{ marginLeft: 10 }}><strong>Rs: </strong>  {parseFloat(distance) * 120}</p>
+                                        </div>
+                                        
+                                    </div>
+                                    <div className='d-flex flex-row justify-content-center'>
+                                        <img src="https://img.freepik.com/free-vector/driving-concept-illustration_114360-11043.jpg?size=626&ext=jpg&ga=GA1.1.1633300079.1682609697&semt=sph" class="rounded" alt="Profile pic" style={{ width: 80, height: 80 }} />
+                                        <div  className='d-flex flex-column justify-content-center'>
+                                        <p className='d-flex justify-content-left pb-0 mb-0' style={{ marginLeft: 10 }}><strong>Car (4 sheets)</strong></p>
+                                        <p className='d-flex justify-content-left pb-0 mb-0' style={{ marginLeft: 10 }}><strong> Rs:</strong>  {parseFloat(distance) * 320}</p>
+                                        </div>
+                                        
+                                    </div>
+                                    <div className='d-flex flex-row justify-content-center'>
+                                        <img src="https://img.freepik.com/free-psd/delivery-3d-illustration-with-person-leaning-against-van_23-2149449428.jpg?size=626&ext=jpg&ga=GA1.1.1633300079.1682609697&semt=sph" class="rounded" alt="Profile pic" style={{ width: 80, height: 80 }} />
+                                        <div  className='d-flex flex-column justify-content-center'>
+                                        <p className='d-flex justify-content-left pb-0 mb-0' style={{ marginLeft: 10 }}><strong>Van (10 sheets)</strong></p>
+                                        <p className='d-flex justify-content-left pb-0 mb-0' style={{ marginLeft: 10 }}><strong> Rs:</strong>  {parseFloat(distance) * 500}</p>
+                                        </div>
+                                        
+                                    </div>
+                                </Row>
+                                <Row> 
+                                <h4>About Area Details</h4>
+                                <div className='d-flex flex-row justify-content-center'>
+                                        <div  className='d-flex flex-column justify-content-center'>
+                                        <p className='d-flex justify-content-left pb-0 mb-0' style={{ marginLeft: 10 }}><strong>Time Duration {duration}</strong></p>
+                                        <p className='d-flex justify-content-left pb-0 mb-0' style={{ marginLeft: 10 }}><strong> Overall Cost to travel : </strong>  {parseFloat(distance) * 200}</p>
+                                        </div>
+                                        
+                                    </div>
+                                </Row>
+                            </div>
+                        </div>}
                 </div>
-                <div class="col-3"></div>
+                <div class="col-4"></div>
             </div>
         </>
     )
