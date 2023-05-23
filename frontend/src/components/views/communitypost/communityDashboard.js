@@ -21,6 +21,7 @@ import AddReply from '../../modals/addReply';
 import ViewReply from '../../modals/viewReplies';
 import ViewNotifications from '../../modals/viewNotifications'
 import { getAllPostService, getPostsBySearch } from '../../services/postService';
+import { Link } from 'react-router-dom';
 
 const CommunityDashboard = () => {
     const [loading,setLoading] = useState(false);
@@ -90,15 +91,24 @@ const CommunityDashboard = () => {
         const win = window.sessionStorage;
         const email = win.getItem('Email');
         setEmail(email);
-        
+
     }, [])
 
     const handleSearch = async (searchQuery) => {
         console.log(searchQuery);
         setLoading(true);
+        const newSearch = {
+            searchQuery
+        }
         try {
           // Call your API function to retrieve posts by search query
-          const response = await getPostsBySearch();
+          const response = await getPostsBySearch(newSearch);
+          if(!response.ok){
+            const responses = await getAllPostService();
+            if (responses.ok) {
+                setPostData(responses.data);
+            }
+          }
           setPostData(response.data); // Assuming the response contains the retrieved posts data
         } catch (error) {
           console.error(error);
@@ -269,7 +279,7 @@ const CommunityDashboard = () => {
                     ) : (
 
                         <div>
-                    {postData.map(post => (
+                    {postData && postData.map(post => (
                         <Row className="mt-3" >
                             <div className="col">
                             </div>
@@ -395,7 +405,7 @@ const CommunityDashboard = () => {
                                     <Row className='d-flex justify-content-center mb-3' >
                                         <img src='images/googlemap.png' className='w-100' style={{ height: 200 }} />
                                         <Button className="rounded-pill" variant="outline-warning" style={{ width: 200, marginTop: 10, height: 40, borderRadius: '1.25rem', boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px', color: 'black' }}>
-                                            <strong>View Map</strong>
+                                            <strong><Link to="/communityMap">View Map</Link></strong>
                                         </Button>
                                     </Row>
                                 </div>

@@ -36,10 +36,15 @@ export const addPostService = async (newPost) => {
     }
 
 }
-export const getPostsBySearch = async () => {
+export const getPostsBySearch = async (searchData) => {
 
     try {
-        let response = await axios.get(BASE_URL + '/view');
+        console.log("fdata",searchData)
+        let response = await axios.post(BASE_URL + '/search', searchData, {
+            headers: {
+              'Content-Type': 'application/json',
+            }
+        },);
 
         return {
             ok: true,
