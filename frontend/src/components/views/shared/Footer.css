@@ -110,6 +110,7 @@ body {
 .legal {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   color: #999;
 }
 

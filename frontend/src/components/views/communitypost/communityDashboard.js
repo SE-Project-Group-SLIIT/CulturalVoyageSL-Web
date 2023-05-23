@@ -21,6 +21,7 @@ import AddReply from '../../modals/addReply';
 import ViewReply from '../../modals/viewReplies';
 import ViewNotifications from '../../modals/viewNotifications'
 import { getAllPostService, getPostsBySearch } from '../../services/postService';
+import FooterBar from "../shared/FooterBar"
 import { Link } from 'react-router-dom';
 
 const CommunityDashboard = () => {
@@ -487,6 +488,7 @@ const CommunityDashboard = () => {
                     </Row>
                 </div>
             </Row>
+            <FooterBar />
         </>
     )
 }

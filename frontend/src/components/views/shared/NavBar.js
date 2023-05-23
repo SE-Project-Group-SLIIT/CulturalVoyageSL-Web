@@ -15,10 +15,13 @@ export default function NavBar() {
             </div>
             <ul className={MobileView ? "nav-links-mobile" : "nav-links"} onClick={() => setMobileView(false)}>
                 <Link to="/home"><li>Home</li></Link>
+                <Link to="#"><li>Sites</li></Link>
+                <Link to="/community"><li>Community</li></Link>
+                <Link to="/eventAll"><li>Events</li></Link>
                 <Link to="#"><li>About</li></Link>
                 <Link to="/login"><li>Login</li></Link>
                 <Link to="/register"><li>Register</li></Link>
-                <Link to="#"><li><FaRegUser /></li></Link>
+                <Link to="/profile"><li><FaRegUser style={{marginTop:35}}/></li></Link>
             </ul>
             <button className='mobile-menu-icon' onClick={() => setMobileView(!MobileView)}>
                 {MobileView ? <ImCross /> : <FaBars />}

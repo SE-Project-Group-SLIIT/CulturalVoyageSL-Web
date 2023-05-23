@@ -74,13 +74,12 @@ const FooterBar = () => {
       </li>
     </ul>
     
-    <div class="legal">
-      <p>&copy; 2023 CulturalVoyageSL. All rights reserved.</p>
+    <center> 
+      <div class="legal">
+      <center><p>&copy; 2023 CulturalVoyageSL. All rights reserved.</p></center>
       
-      {/* <div class="legal__links">
-        <span>Made with <span class="heart">♥</span> remotely from Anywhere</span>
-      </div> */}
     </div>
+    </center>
   </footer>
   )
 }
