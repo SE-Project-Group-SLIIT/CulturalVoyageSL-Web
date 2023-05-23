@@ -1,0 +1,17 @@
+.dropdown-item:hover {
+    background-color: black;
+    color: white;
+  }
+.dropdown-item {
+    height: 40px;
+    display: flex;
+    align-items: center;
+  }
+.custom-dropdown {
+    color: black !important;
+    font-size: 20px;
+}
+
+/* .dropdown-toggle::after {
+    display: none;
+  } */

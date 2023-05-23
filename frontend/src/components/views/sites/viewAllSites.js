@@ -4,7 +4,7 @@ import { Button, Modal, ModalHeader } from "react-bootstrap";
 import Swal from "sweetalert2";
 import Row from "react-bootstrap/Row";
 import ViewSiteModal from "./viewSiteModal";
-import NavBar from "../shared/Navbar";
+import NavBar from '../shared/adminNavBar'
 import { useHistory } from "react-router-dom";
 import UpdateSite from "./updateSite";
 import { deleteSiteService } from "../../services/siteService";

@@ -5,7 +5,8 @@ import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/esm/Row";
 import Button from "react-bootstrap/Button";
-import NavBar from "../shared/Navbar";
+// import NavBar from "../shared/Navbar";
+import NavBar from '../shared/adminNavBar'
 import CardHeader from "react-bootstrap/esm/CardHeader";
 import Col from "react-bootstrap/esm/Col";
 import { addSiteService } from "../../services/siteService";
