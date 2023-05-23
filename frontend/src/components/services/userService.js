@@ -1,5 +1,5 @@
 import axios from 'axios';
-const BASE_URL_USER = `http://localhost:5000/user`
+const BASE_URL_USER = `https://culturalvoyagesl-backend-plcp.onrender.com/user`
 
 //--------------Login Services-------------------------------
 export const createUser = async (payload) => {
