@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Modal } from "react-bootstrap";
 import './addPost.css'
 import Swal from 'sweetalert2'
@@ -10,7 +10,7 @@ export default function AddPost() {
     const [message,setMessage] = useState(null);
     const [keyWords,setKeyWords] = useState(null);
     const [image, setImage] = useState(null)
-    const user = '6467c45d09e93cb4faa85904';
+    const [user,setUser] = useState(null)
      //handle and convert it in base 64
      const handleImage = (e) => {
         const file = e.target.files[0];
@@ -46,6 +46,11 @@ export default function AddPost() {
             window.location.reload();
           }
     }
+    useEffect(()=>{
+        const win = window.sessionStorage;
+        const email = win.getItem('Email');
+        setUser(email);
+    },[])
 
     return (
         <div>

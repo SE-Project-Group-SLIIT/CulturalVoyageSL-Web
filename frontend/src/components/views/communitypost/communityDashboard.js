@@ -20,12 +20,14 @@ import AddPost from '../../modals/addPost';
 import AddReply from '../../modals/addReply';
 import ViewReply from '../../modals/viewReplies';
 import ViewNotifications from '../../modals/viewNotifications'
-import { getAllPostService } from '../../services/postService';
+import { getAllPostService, getPostsBySearch } from '../../services/postService';
 
 const CommunityDashboard = () => {
+    const [loading,setLoading] = useState(false);
+    const [email, setEmail] = useState(null);
     const [postData, setPostData] = useState([]);
     const [viewReplyData, setviewReplyData] = useState(null);
-    const [addReplyData,setAddReplyData]  = useState(null);
+    const [addReplyData, setAddReplyData] = useState(null);
     const [modalAddPost, setModalAddPost] = useState(false);
     const [modalAddReply, setModalAddReply] = useState(false);
     const [modalViewReplies, setModalViewReplies] = useState(false);
@@ -33,12 +35,23 @@ const CommunityDashboard = () => {
     let arryObj = [];
     //set add Question modal
     const openModalAddPost = () => {
-        setModalAddPost(true);
+        if (email) {
+            setModalAddPost(true);
+        }
+        else {
+            window.location.replace("/login");
+        }
+        
     };
     //set add Reply modal
     const openModalAddReply = (value) => {
-        setModalAddReply(true);
-        setAddReplyData(value)
+        if (email) {
+            setModalAddReply(true);
+            setAddReplyData(value)
+        }
+        else {
+            window.location.replace("/login");
+        }
     };
     //set View Reply modal
     const openModalViewReplies = (value) => {
@@ -74,9 +87,25 @@ const CommunityDashboard = () => {
     // }
     useEffect(() => {
         getData()
-
-
+        const win = window.sessionStorage;
+        const email = win.getItem('Email');
+        setEmail(email);
+        
     }, [])
+
+    const handleSearch = async (searchQuery) => {
+        console.log(searchQuery);
+        setLoading(true);
+        try {
+          // Call your API function to retrieve posts by search query
+          const response = await getPostsBySearch();
+          setPostData(response.data); // Assuming the response contains the retrieved posts data
+        } catch (error) {
+          console.error(error);
+        } finally {
+          setLoading(false);
+        }
+      };
     return (
         <>
             <NavBar />
@@ -102,7 +131,7 @@ const CommunityDashboard = () => {
             >
                 <AddReply
                     onHide={() => setModalAddReply(false)}
-                    data = {addReplyData}
+                    data={addReplyData}
                 />
             </Modal>
             {/* modal for Add Reply */}
@@ -115,7 +144,7 @@ const CommunityDashboard = () => {
             >
                 <ViewReply
                     onHide={() => setModalViewReplies(false)}
-                    data = {viewReplyData}
+                    data={viewReplyData}
                 />
             </Modal>
 
@@ -155,24 +184,8 @@ const CommunityDashboard = () => {
                 </div>
             </Row>
 
-            <SearchBar />
+            <SearchBar onSearch={handleSearch} />
 
-            {/* <Row>
-                <Col className='d-flex justify-content-center' style={{ width: 1000, height: 50, marginTop: 30 }}>
-                    <Form className="d-flex" >
-                        <Form.Control
-                            type="search"
-                            placeholder="   Search About Needs"
-                            className="me-2 rounded-pill"
-                            aria-label="Search"
-                            style={{ width: 700, height: 50 }}
-                        />
-                        <Button className="rounded-pill" variant="outline-warning">
-                            <FaSearch style={{ width: 25, height: 25 }} />
-                        </Button>
-                    </Form>
-                </Col>
-            </Row> */}
             <Row className='mt-4 d-flex justify-content-center'>
                 <h3 style={{ fontFamily: "'Poppins', sans-serif", marginTop: 10 }}><strong>Related Searches</strong></h3>
                 {/* <h3 style={{ fontFamily: 'Poppins', marginBottom: 20 }}></h3> */}
@@ -186,37 +199,37 @@ const CommunityDashboard = () => {
                         </div>
                         <div className='col d-flex justify-content-center'>
                             <div className="card-new d-block justify-content-center" style={{ backgroundColor: '#FF6C6C', borderRadius: 10, width: 100, height: 100, boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px' }} >
-                            <center><BsCloudSun style={{ width: 70, height: 70, marginTop: 15 }} /></center>
+                                <center><BsCloudSun style={{ width: 70, height: 70, marginTop: 15 }} /></center>
                                 <p style={{ marginTop: 15 }}>Weather</p>
                             </div>
                         </div>
                         <div className='col d-flex justify-content-center'>
                             <div className="card-new d-block justify-content-center" style={{ backgroundColor: '#3480FF', borderRadius: 10, width: 100, height: 100, boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px' }} >
-                            <center> <MdOutlineSportsCricket style={{ width: 70, height: 70, marginTop: 15, color: 'white' }} /></center>
+                                <center> <MdOutlineSportsCricket style={{ width: 70, height: 70, marginTop: 15, color: 'white' }} /></center>
                                 <p style={{ marginTop: 15 }}>Sports</p>
                             </div>
                         </div>
                         <div className='col d-flex justify-content-center'>
                             <div className="card-new d-block justify-content-center" style={{ backgroundColor: '#011F53', borderRadius: 10, width: 100, height: 100, boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px' }} >
-                            <center> <BiNews style={{ width: 70, height: 70, marginTop: 15, color: 'white' }} /></center>
+                                <center> <BiNews style={{ width: 70, height: 70, marginTop: 15, color: 'white' }} /></center>
                                 <p style={{ marginTop: 15 }}>News</p>
                             </div>
                         </div>
                         <div className='col d-flex justify-content-center'>
                             <div className="card-new d-block justify-content-center" style={{ backgroundColor: '#730056', borderRadius: 10, width: 100, height: 100, boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px' }} >
-                            <center>   <BsFileEarmarkPerson style={{ width: 70, height: 70, marginTop: 15, color: 'white' }} /></center>
+                                <center>   <BsFileEarmarkPerson style={{ width: 70, height: 70, marginTop: 15, color: 'white' }} /></center>
                                 <p style={{ marginTop: 15 }}>Guide</p>
                             </div>
                         </div>
                         <div className='col d-flex justify-content-center'>
                             <div className="card-new d-block justify-content-center" style={{ backgroundColor: '#D80574', borderRadius: 10, width: 100, height: 100, boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px' }} >
-                            <center> <BsFillCarFrontFill style={{ width: 70, height: 70, marginTop: 15 }} /></center>
+                                <center> <BsFillCarFrontFill style={{ width: 70, height: 70, marginTop: 15 }} /></center>
                                 <p style={{ marginTop: 15 }}>Transport</p>
                             </div>
                         </div>
                         <div className='col d-flex justify-content-center'>
                             <div className="card-new d-block justify-content-center" style={{ backgroundColor: '#FFE0F0', borderRadius: 10, width: 100, height: 100, boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px' }} >
-                            <center> <RiHotelLine style={{ width: 70, height: 70, marginTop: 15 }} /></center>
+                                <center> <RiHotelLine style={{ width: 70, height: 70, marginTop: 15 }} /></center>
                                 <p style={{ marginTop: 15 }}>Hotels</p>
                             </div>
                         </div>
@@ -225,9 +238,7 @@ const CommunityDashboard = () => {
 
             </Row>
 
-
             <Row className="mt-5">
-
                 <div className="col-9">
                     <Row>
                         <div className="col">
@@ -252,27 +263,26 @@ const CommunityDashboard = () => {
                             </div>
                         </div>
                     </Row>
+
+                    {loading ? (
+                        <div>Loading...</div>
+                    ) : (
+
+                        <div>
                     {postData.map(post => (
-                        // <div key={post._id}>
-                        //     <h2>{post.title}</h2>
-                        //     <p>{post.message}</p>
-                        //     <p>User: {post.user}</p>
-                        //     <p>Likes: {post.likes}</p>
-                        //     {/* Render other properties as needed */}
-                        // </div>
                         <Row className="mt-3" >
-                        <div className="col">
-                        </div>
-                        <div className="col-8 ">
-                            <div className="card" style={{ borderRadius: 10, height: 150, boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px' }} >
-                                <div className="card-header d-flex justify-content-left p-0">
-                                    <div className='col-12 d-flex justify-content-between p-0'>
-                                        <p style={{ paddingTop: 10, marginTop: 5, marginLeft: 20 }}><strong>{post.title}</strong></p>
-                                        <BiEditAlt style={{ width: 25, height: 25, marginTop: 7, marginRight: 15 }} />
+                            <div className="col">
+                            </div>
+                            <div className="col-8 ">
+                                <div className="card" style={{ borderRadius: 10, height: 150, boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px' }} >
+                                    <div className="card-header d-flex justify-content-left p-0">
+                                        <div className='col-12 d-flex justify-content-between p-0'>
+                                            <p style={{ paddingTop: 10, marginTop: 5, marginLeft: 20 }}><strong>{post.title}</strong></p>
+                                            <BiEditAlt style={{ width: 25, height: 25, marginTop: 7, marginRight: 15 }} />
+                                        </div>
                                     </div>
-                                </div>
-                                <div className="card-body d-flex justify-content-left">
-                                    {/* <Row className="pt-0">
+                                    <div className="card-body d-flex justify-content-left">
+                                        {/* <Row className="pt-0">
                                         <div className='col-1'>
                                             <img src="images/Ella-Sri-Lanka.jpg" class="rounded" alt="Profile pic" style={{ width: 50, height: 50 }} />
                                         </div>
@@ -291,60 +301,61 @@ const CommunityDashboard = () => {
 
                                         </Row>
                                     </Row> */}
-                                    <div className='d-flex flex-column'>
-                                        <div className='d-flex flex-row'>
-                                        <img src="images/Ella-Sri-Lanka.jpg" class="rounded" alt="Profile pic" style={{ width: 50, height: 50 }} />
                                         <div className='d-flex flex-column'>
-                                        <p className='d-flex justify-content-left pb-0 mb-0' style={{ marginLeft: 10 }}><strong>Anonymous</strong></p>
-                                        <p className='d-flex justify-content-left pb-0 mb-0' style={{ marginLeft: 10 }}>{post.message}</p>
+                                            <div className='d-flex flex-row'>
+                                                <img src="images/Ella-Sri-Lanka.jpg" class="rounded" alt="Profile pic" style={{ width: 50, height: 50 }} />
+                                                <div className='d-flex flex-column'>
+                                                    <p className='d-flex justify-content-left pb-0 mb-0' style={{ marginLeft: 10 }}><strong>Anonymous</strong></p>
+                                                    <p className='d-flex justify-content-left pb-0 mb-0' style={{ marginLeft: 10 }}>{post.message}</p>
+                                                </div>
+                                            </div>
+                                            <div className='d-flex flex-row' style={{ marginTop: 2 }}>
+                                                <span class="badge rounded-pill bg-primary" style={{ width: 60, height: 18, fontSize: 10 }}>member</span>
+                                                <BiTime style={{ marginTop: 1, marginLeft: 15 }} />
+                                            </div>
                                         </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-3 p-0" style={{ borderRadius: 10, boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px' }}>
+                                <div className="card" style={{ borderRadius: 10, height: 150 }}>
+                                    <div className='row' style={{ marginTop: 30 }}>
+                                        <div className='col-7' style={{ marginLeft: 12 }}>
+                                            <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: 17, marginTop: 10, marginLeft: 3 }}> <strong> Any Related Questions?</strong></p>
                                         </div>
-                                        <div className='d-flex flex-row' style={{ marginTop: 2 }}>
-                                        <span class="badge rounded-pill bg-primary" style={{ width: 60, height: 18, fontSize: 10 }}>member</span>
-                                        <BiTime style={{ marginTop: 1, marginLeft: 15 }} />
+                                        <div className='col'>
+                                            <div className='d-flex justify-content-center'>
+                                                <Button className="rounded-pill" variant="outline-warning" style={{ width: 100, height: 40, borderRadius: '1.25rem', boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px', color: 'black' }}
+                                                    onClick={() => openModalAddReply(post)}>
+                                                    <strong>Reply</strong>
+                                                </Button>
+                                                {/* <button type="button" className="rounded-pill" variant="outline-warning" style={{ width: 100, height: 40, borderRadius: '1.25rem', boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px', color: 'black' }}>Reply</button> */}
+                                            </div>
                                         </div>
                                     </div>
+                                    <div className='row mt-3'>
+                                        <div className='col d-flex justify-content-center'>
+                                            <p style={{ fontFamily: "Gill Sans", fontSize: 19, marginTop: 2, marginRight: 3 }}>{post.likes}</p>
+                                            <IoIosHeart size={30} color='red' />
+                                        </div>
+                                        <div className='col d-flex justify-content-center'>
+                                            <p style={{ fontFamily: "Gill Sans", fontSize: 19, marginTop: 2, marginRight: 3 }}>{post.replies}</p>
+                                            <BiMessageDots style={{ width: 30, height: 30 }} onClick={() => openModalViewReplies(post._id)} />
+                                        </div>
+                                        <div className='col d-flex justify-content-center'>
+                                            <BiMailSend style={{ width: 30, height: 30 }} />
+                                        </div>
+                                    </div>
+
 
                                 </div>
                             </div>
-                        </div>
-                        <div className="col-3 p-0" style={{ borderRadius: 10, boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px' }}>
-                            <div className="card" style={{ borderRadius: 10, height: 150 }}>
-                                <div className='row' style={{ marginTop: 30 }}>
-                                    <div className='col-7' style={{ marginLeft: 12 }}>
-                                        <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: 17, marginTop: 10, marginLeft: 3 }}> <strong> Any Related Questions?</strong></p>
-                                    </div>
-                                    <div className='col'>
-                                        <div className='d-flex justify-content-center'>
-                                            <Button className="rounded-pill" variant="outline-warning" style={{ width: 100, height: 40, borderRadius: '1.25rem', boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px', color: 'black' }}
-                                                onClick={() => openModalAddReply(post)}>
-                                                <strong>Reply</strong>
-                                            </Button>
-                                            {/* <button type="button" className="rounded-pill" variant="outline-warning" style={{ width: 100, height: 40, borderRadius: '1.25rem', boxShadow: 'rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px', color: 'black' }}>Reply</button> */}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className='row mt-3'>
-                                    <div className='col d-flex justify-content-center'>
-                                        <p style={{ fontFamily: "Gill Sans", fontSize: 19, marginTop: 2, marginRight: 3 }}>3</p>
-                                        <IoIosHeart size={30} color='red' />
-                                    </div>
-                                    <div className='col d-flex justify-content-center'>
-                                        <p style={{ fontFamily: "Gill Sans", fontSize: 19, marginTop: 2, marginRight: 3 }}>3</p>
-                                        <BiMessageDots style={{ width: 30, height: 30 }} onClick={() => openModalViewReplies(post._id)} />
-                                    </div>
-                                    <div className='col d-flex justify-content-center'>
-                                        <BiMailSend style={{ width: 30, height: 30 }} />
-                                    </div>
-                                </div>
-
-
-                            </div>
-                        </div>
-                    </Row>
+                        </Row>
                     ))}
-                    
-                    
+                    </div>
+                    )}
+
                     {/* 
                     <Row className="mt-3">
                         <div className="col">
