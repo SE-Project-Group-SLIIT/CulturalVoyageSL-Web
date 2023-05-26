@@ -3,14 +3,19 @@ import axios from "axios";
 import { Button, Modal, ModalHeader } from "react-bootstrap";
 import Swal from "sweetalert2";
 import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
 import ViewSiteModal from "./viewSiteModal";
 import NavBar from '../shared/adminNavBar'
+import { FaSearch } from "react-icons/fa";
 import { useHistory } from "react-router-dom";
 import UpdateSite from "./updateSite";
-import { deleteSiteService } from "../../services/siteService";
+import { deleteSiteService,searchSiteService } from "../../services/siteService";
 
 const ViewAllSites = () => {
   const [viewSite, setViewSite] = useState([]);
+
+  const [search, setSearch] = useState("");
 
   const [modalData, setData] = useState([]);
   const [modalShow, setModalShow] = useState(false);
@@ -120,6 +125,17 @@ const ViewAllSites = () => {
       });
   }
 
+  async function searchSite(e) {
+    console.log("search...", search);
+    e.preventDefault();
+
+    let response = await searchSiteService(search);
+    if (response.ok) {
+      console.log("search>>", response.data.data);
+      setViewSite(response.data.data);
+    }
+  }
+
   // refresh page
   function refreshPage() {
     window.location.reload();
@@ -160,12 +176,50 @@ const ViewAllSites = () => {
             <div className="ml-5 mr-5">
               <div
                 class="py-4 text-center"
-                style={{ fontFamily: "sans-serif" }}
+                style={{ fontFamily: "sans-serif",fontWeight: "bold",
+                fontSize: "30px" }}
               >
                 <h2>List of Sites</h2>
               </div>
 
-              <div
+              <Row style={{marginBottom:'25px', alignContent:'center'}}>
+              <Col className='d-flex justify-content-flex-end' style={{ width: 1000, height: 50, marginTop: 3, }}>
+                <Form className="d-flex" onSubmit={searchSite}>
+                  <Form.Control
+                    type="search"
+                    placeholder="Search Site..."
+                    className="rounded-pill me-2"
+                    aria-label="Search"
+                    style={{ width: 400, height: 50, marginLeft: 40 }}
+                    value={search}
+                    onChange={(site) => {
+                      setSearch(site.target.value);
+                    }}
+                  ></Form.Control>
+                 
+                  <Button
+                    class="rounded-pill me-4"
+                    variant="outline-warning"
+                    style={{width: 50, height: 50, position: '',top: 0,  borderTopLeftRadius: 30, borderBottomLeftRadius: 30,borderTopRightRadius: 30, borderBottomRightRadius: 30, marginRight: 600}}
+                    type="submit"
+                  >
+                    <FaSearch style={{ width: 25, height: 25, }}/>
+                  </Button>
+                </Form>
+                <Button
+                  variant="success"
+                  onClick={() => {
+                    history.push("/addSite");
+                  }}
+                  style={{justifyContent: "flex-end",borderTopLeftRadius: 30, borderBottomLeftRadius: 30,borderTopRightRadius: 30, borderBottomRightRadius: 30}}
+                >
+                  Add New Site
+                </Button>
+                </Col>
+                
+                </Row>
+
+              {/* <div
                 style={{
                   marginTop: "3px",
                   marginBottom: "20px",
@@ -182,7 +236,7 @@ const ViewAllSites = () => {
                 >
                   Add Site
                 </Button>
-              </div>
+              </div> */}
 
               <table class="table table-striped" id="myTable">
                 <thead className="table-dark">
@@ -220,8 +274,9 @@ const ViewAllSites = () => {
                             aria-label="Basic example"
                           >
                             <button
-                              class="btn btn-light btn-sm"
+                              class="btn btn-warning btn-sm"
                               onClick={() => openModalUpdate(site)}
+                              style={{marginRight: "10px", borderRadius: '50px'}}
                             >
                               update
                             </button>
@@ -231,6 +286,7 @@ const ViewAllSites = () => {
                               onClick={() => {
                                 openModalDelete(site);
                               }}
+                              style={{marginLeft: "10px",borderRadius: '50px'}}
                               role="button"
                             >
                               remove
@@ -266,11 +322,11 @@ const ViewAllSites = () => {
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
-        <Modal.Header closeButton>
-          <Modal.Title>Confirm Deletion</Modal.Title>
+        <Modal.Header closeButton >
+          <Modal.Title >Confirm Deletion</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
-          <p>Are you want to delete this buyer ?</p>
+        <Modal.Body style={{textAlign:'center', fontSize:'25px'}}>
+          <p>Are you want to delete this site ?</p>
         </Modal.Body>
         <Modal.Footer>
           <div className="row">
@@ -281,6 +337,7 @@ const ViewAllSites = () => {
                 onClick={() => {
                   deleteSite(modalDataDelete);
                 }}
+                style={{borderRadius: '50px'}}
               >
                 Confirm
               </Button>
@@ -289,7 +346,7 @@ const ViewAllSites = () => {
               className="col-6 text-right mt-1"
               onClick={() => setModalDeleteConfirm(false)}
             >
-              <Button type="reset" className="btn btn-warning">
+              <Button type="reset" className="btn btn-warning" style={{borderRadius: '50px'}}>
                 Cancel
               </Button>
             </div>

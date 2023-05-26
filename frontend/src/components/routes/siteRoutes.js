@@ -8,6 +8,7 @@ import OtherSites from "../views/sites/otherSites";
 import AddSite from "../views/sites/addSite";
 import ViewSite from "../views/sites/viewSite";
 import ViewAllSites from "../views/sites/viewAllSites";
+import AdminHome from "../views/AdminHome";
 
 export const SiteRouters = () => {
   return (
@@ -21,6 +22,8 @@ export const SiteRouters = () => {
         <Route path="/addSite" exact component={AddSite} />
         <Route path="/viewSite" exact component={ViewSite} />
         <Route path="/viewAll" exact component={ViewAllSites} />
+        <Route path="/homeA" exact component={AdminHome} />
+        
       </Switch>
     </Router>
   );

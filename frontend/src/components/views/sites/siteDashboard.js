@@ -8,7 +8,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import NavBar from "../shared/Navbar";
 import { useHistory } from "react-router-dom";
-// import "./sites.css";
+import './site.css';
 
 const SiteDashboard = () => {
   const history = useHistory();
@@ -46,8 +46,8 @@ const SiteDashboard = () => {
             marginBottom: "25px",
             backgroundColor: "ghostwhite",
             borderRadius: "20px",
-            paddingLeft: "200px",
-            paddingRight: "200px",
+            paddingLeft: "170px",
+            paddingRight: "170px",
           }}
         >
           <h1 style={{ fontFamily: "Roboto", marginTop: "25px" }}>
@@ -68,19 +68,20 @@ const SiteDashboard = () => {
           <Col>
             <Row
               style={{
-                marginTop: "5px",
+                marginTop: "25px",
                 marginBottom: "25px",
-                justifyContent: "space-between",
+                display: "flex",
+            flexDirection: "row",
+                justifyContent: "flex-start",
                 paddingLeft: "2px",
                 paddingRight: "2px",
-                display: "flex",
               }}
             >
               <div
                 className="Card"
                 type="button"
                 // border="info"
-                style={{ height: "300px", width: "14rem" }}
+                style={{ height: "300px", width: "15rem",}}
                 onClick={() => history.push("/allSites")}
               >
                 <Card.Body>
@@ -96,18 +97,18 @@ const SiteDashboard = () => {
                     />
                   </div>
                   <div
-                    className="intro"
-                    style={{
-                      height: "55px",
-                      width: "200px",
-                      padding: "6px",
-                      boxSizing: "border-box",
-                      position: "absolute",
-                      background: "rgb(27, 27, 27, .5)",
-                      color: "white",
-                      bottom: "-169px",
-                      borderRadius: "10px",
-                    }}
+                    className="intro-title"
+                    // style={{
+                    //   height: "55px",
+                    //   width: "200px",
+                    //   padding: "6px",
+                    //   boxSizing: "border-box",
+                    //   position: "absolute",
+                    //   background: "rgb(27, 27, 27, .5)",
+                    //   color: "white",
+                    //   bottom: "-169px",
+                    //   borderRadius: "10px",
+                    // }}
                   >
                     <h1 style={{ fontSize: "25px" }}>All Sites</h1>
                   </div>
@@ -118,7 +119,7 @@ const SiteDashboard = () => {
                 className="Card"
                 type="button"
                 // border="info"
-                style={{ height: "300px", width: "14rem" }}
+                style={{ height: "300px", width: "15rem",}}
                 onClick={() => history.push("/allHistorical")}
               >
                 <Card.Body>
@@ -134,18 +135,18 @@ const SiteDashboard = () => {
                     />
                   </div>
                   <div
-                    className="intro"
-                    style={{
-                      height: "55px",
-                      width: "200px",
-                      padding: "6px",
-                      boxSizing: "border-box",
-                      position: "absolute",
-                      background: "rgb(27, 27, 27, .5)",
-                      color: "white",
-                      bottom: "-169px",
-                      borderRadius: "10px",
-                    }}
+                    className="intro-title"
+                    // style={{
+                    //   height: "55px",
+                    //   width: "200px",
+                    //   padding: "6px",
+                    //   boxSizing: "border-box",
+                    //   position: "absolute",
+                    //   background: "rgb(27, 27, 27, .5)",
+                    //   color: "white",
+                    //   bottom: "-169px",
+                    //   borderRadius: "10px",
+                    // }}
                   >
                     <h1 style={{ fontSize: "25px" }}>Historical Sites</h1>
                   </div>
@@ -156,7 +157,7 @@ const SiteDashboard = () => {
                 className="Card"
                 type="button"
                 // border="info"
-                style={{ height: "300px", width: "14rem" }}
+                style={{ height: "300px", width: "15rem", }}
                 onClick={() => history.push("/allReligious")}
               >
                 <Card.Body>
@@ -172,18 +173,18 @@ const SiteDashboard = () => {
                     />
                   </div>
                   <div
-                    className="intro"
-                    style={{
-                      height: "55px",
-                      width: "200px",
-                      padding: "6px",
-                      boxSizing: "border-box",
-                      position: "absolute",
-                      background: "rgb(27, 27, 27, .5)",
-                      color: "white",
-                      bottom: "-169px",
-                      borderRadius: "10px",
-                    }}
+                    className="intro-title"
+                    // style={{
+                    //   height: "55px",
+                    //   width: "200px",
+                    //   padding: "6px",
+                    //   boxSizing: "border-box",
+                    //   position: "absolute",
+                    //   background: "rgb(27, 27, 27, .5)",
+                    //   color: "white",
+                    //   bottom: "-169px",
+                    //   borderRadius: "10px",
+                    // }}
                   >
                     <h1 style={{ fontSize: "25px" }}>Religious Sites</h1>
                   </div>
@@ -194,7 +195,7 @@ const SiteDashboard = () => {
                 className="Card"
                 type="button"
                 // border="info"
-                style={{ height: "300px", width: "14rem" }}
+                style={{ height: "300px", width: "15rem",}}
                 onClick={() => history.push("/allOther")}
               >
                 <Card.Body>
@@ -210,18 +211,18 @@ const SiteDashboard = () => {
                     />
                   </div>
                   <div
-                    className="intro"
-                    style={{
-                      height: "55px",
-                      width: "200px",
-                      padding: "6px",
-                      boxSizing: "border-box",
-                      position: "absolute",
-                      background: "rgb(27, 27, 27, .5)",
-                      color: "white",
-                      bottom: "-169px",
-                      borderRadius: "10px",
-                    }}
+                    className="intro-title"
+                    // style={{
+                    //   height: "55px",
+                    //   width: "200px",
+                    //   padding: "6px",
+                    //   boxSizing: "border-box",
+                    //   position: "absolute",
+                    //   background: "rgb(27, 27, 27, .5)",
+                    //   color: "white",
+                    //   bottom: "-169px",
+                    //   borderRadius: "10px",
+                    // }}
                   >
                     <h1 style={{ fontSize: "25px" }}>Other Sites</h1>
                   </div>

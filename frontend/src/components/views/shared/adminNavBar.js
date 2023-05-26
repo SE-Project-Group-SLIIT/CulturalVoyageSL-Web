@@ -12,7 +12,9 @@ export default function AdminNavBar() {
     const [isSitesDropdownOpen, setIsSitesDropdownOpen] = useState(false);
     const [isEventsDropdownOpen, setIsEventsDropdownOpen] = useState(false);
     const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
-  
+    const [isUserMDropdownOpen, setIsUserMDropdownOpen] = useState(false);
+    const [isPostDropdownOpen, setIsPostDropdownOpen] = useState(false);
+
     const handleSitesDropdownMouseEnter = () => {
         setIsSitesDropdownOpen(true);
       };
@@ -37,6 +39,22 @@ export default function AdminNavBar() {
         setIsUserDropdownOpen(false);
       };
 
+      const handleUserMDropdownMouseEnter = () => {
+        setIsUserMDropdownOpen(true);
+      };
+
+      const handleUserMDropdownMouseLeave = () => {
+        setIsUserMDropdownOpen(false);
+      };
+
+      const handlePostDropdownMouseEnter = () => {
+        setIsPostDropdownOpen(true);
+      };
+
+      const handlePostDropdownMouseLeave = () => {
+        setIsPostDropdownOpen(false);
+      };
+
 
   return (
     <Navbar bg="light" expand="lg" style={{ height: "13vh" }}>
@@ -49,11 +67,31 @@ export default function AdminNavBar() {
           ></Image>
         </Navbar.Brand>
         {/* <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand> */}
-        <Row>
+        <Row style={{marginLeft:'430px'}}>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto" >
-            <Nav.Link href="/sites" style={{paddingRight:'50px', fontSize:'20px', color:'black'}}>Home</Nav.Link>
+            <Nav.Link href="/homeA" style={{paddingRight:'50px', fontSize:'20px', color:'black'}}>Home</Nav.Link>
+
+            <NavDropdown
+              title="Users"
+              id="userM-dropdown"
+              onMouseEnter={handleUserMDropdownMouseEnter}
+              onMouseLeave={handleUserMDropdownMouseLeave}
+              show={isUserMDropdownOpen}
+              className="custom-dropdown"
+              style={{paddingRight:'50px'}}
+            >
+              {/* <NavDropdown.Item href="/addSite" className="dropdown-item">
+                Add New Site
+              </NavDropdown.Item> */}
+
+              <NavDropdown.Item href="/#" className="dropdown-item">
+                User List
+              </NavDropdown.Item>
+              {/* <NavDropdown.Divider /> */}
+            </NavDropdown>
+
             <NavDropdown
               title="Sites"
               id="site-dropdown"
@@ -88,6 +126,25 @@ export default function AdminNavBar() {
 
               <NavDropdown.Item href="/#" className="dropdown-item">
                 Event List
+              </NavDropdown.Item>
+              {/* <NavDropdown.Divider /> */}
+            </NavDropdown>
+
+            <NavDropdown
+              title="Posts"
+              id="post-dropdown"
+              onMouseEnter={handlePostDropdownMouseEnter}
+              onMouseLeave={handlePostDropdownMouseLeave}
+              show={isPostDropdownOpen}
+              className="custom-dropdown"
+              style={{paddingRight:'50px'}}
+            >
+              {/* <NavDropdown.Item href="/#" className="dropdown-item">
+                Add New Event
+              </NavDropdown.Item> */}
+
+              <NavDropdown.Item href="/#" className="dropdown-item">
+                Post List
               </NavDropdown.Item>
               {/* <NavDropdown.Divider /> */}
             </NavDropdown>

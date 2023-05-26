@@ -3,6 +3,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
+import Form from "react-bootstrap/Form";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import { FaSearch } from "react-icons/fa";
@@ -10,10 +11,12 @@ import { useHistory } from "react-router-dom";
 import axios from "axios";
 import Button from "react-bootstrap/esm/Button";
 import NavBar from "../shared/Navbar";
-import { getSiteCategoryService } from "../../services/siteService";
+import './site.css';
+import { getSiteCategoryService, searchSiteService } from "../../services/siteService";
 
 const ReligiousSites = () => {
   const [religiousSiteDetails, setReligiousSiteDetails] = useState([]);
+  const [search, setSearch] = useState("");
 
   let history = useHistory();
 
@@ -49,6 +52,17 @@ const ReligiousSites = () => {
       state: data,
     });
   };
+
+  async function searchSite(e) {
+    console.log("search...", search);
+    e.preventDefault();
+
+    let response = await searchSiteService(search);
+    if (response.ok) {
+      console.log("search>>", response.data.data);
+      setReligiousSiteDetails(response.data.data);
+    }
+  }
 
   return (
     <div>
@@ -107,36 +121,32 @@ const ReligiousSites = () => {
           <hr></hr>
         </Row>
 
-        {/* <Row>
-          <div class="row table-head-search">
-            <div className="col-md-8"></div>
-            <div className="col">
-              <div class="input-group input-group-search">
-                <div class="searchbar">
-                  <form id="contactform" class="form">
-                    <input
-                      class="search_input"
-                      type="text"
-                      name=""
-                      placeholder="Search..."
-                      required
-                    />
-                    <button
-                      class="btn search_icon"
-                      type="submit"
-                      id="submit"
-                      name="submit"
-                      style={{ marginLeft: "263px", marginTop: "-30px" }}
-                    >
-                      {" "}
-                      &nbsp;<FaSearch></FaSearch>
-                    </button>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </Row> */}
+        <Row>
+              <Col className='d-flex justify-content-center' style={{ width: 1000, height: 50, marginTop: 10, }}>
+                <Form className="d-flex" onSubmit={searchSite}>
+                  <Form.Control
+                    type="search"
+                    placeholder="Search Site..."
+                    className="rounded-pill me-2"
+                    aria-label="Search"
+                    style={{ width: 700, height: 50 }}
+                    value={search}
+                    onChange={(site) => {
+                      setSearch(site.target.value);
+                    }}
+                  ></Form.Control>
+                 
+                  <Button
+                    class="rounded-pill"
+                    variant="outline-warning"
+                    style={{width: 50, height: 50, position: '',top: 0,  borderTopLeftRadius: 30, borderBottomLeftRadius: 30,borderTopRightRadius: 30, borderBottomRightRadius: 30}}
+                    type="submit"
+                  >
+                    <FaSearch style={{ width: 25, height: 25, }}/>
+                  </Button>
+                </Form>
+                </Col>
+                </Row>
 
         <Row
           style={{
