@@ -1,0 +1,18 @@
+.dropdown-item:hover {
+    background-color: black;
+    color: white;
+  }
+.dropdown-item {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    margin-top: 0%;
+  }
+.custom-dropdown {
+    color: black !important;
+    font-size: 20px;
+}
+
+.dropdown-toggle::after {
+    display: none;
+  }

@@ -1,0 +1,32 @@
+/* site cards */
+.img:hover{
+    transform: scale(1.1);
+  } 
+  
+  .Card:hover .intro{
+    height: 210px;
+    bottom: 222px;
+    background: black;
+  }
+  
+  .Card:hover .p{
+  opacity: 1;
+  visibility: visible;
+  }
+  
+  
+  
+  
+  .intro-title {
+    position: relative;
+    height: 55px;
+    width: 216px;
+    padding: 6px;
+    box-sizing: border-box;
+    background: rgba(27, 27, 27, 0.5);
+    color: white;
+    bottom: 55px;
+    left: 0;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
