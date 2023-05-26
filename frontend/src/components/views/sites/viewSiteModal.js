@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Modal } from "react-bootstrap";
-import NavBar from "../shared/Navbar";
+import NavBar from "../shared/NavBar";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
@@ -85,7 +85,7 @@ export default function ViewSiteModal(site) {
             <Col>
               <hr></hr>
               <Row style={{ margin: "10px" }}>
-                <h2>{site.data.SiteName}</h2>
+                <h1>{site.data.SiteName}</h1>
                 <small>{site.data.Description}</small>
               </Row>
 

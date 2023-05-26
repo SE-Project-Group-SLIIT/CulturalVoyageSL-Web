@@ -6,7 +6,8 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-import NavBar from "../shared/Navbar";
+import NavBar from "../shared/NavBar";
+import Footer from '../shared/FooterBar'
 import { useHistory } from "react-router-dom";
 import './site.css';
 
@@ -230,6 +231,9 @@ const SiteDashboard = () => {
               </div>
             </Row>
           </Col>
+        </Row>
+        <Row>
+          <Footer></Footer>
         </Row>
       </Container>
     </div>

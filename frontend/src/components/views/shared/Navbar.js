@@ -15,7 +15,7 @@ export default function NavBar() {
             </div>
             <ul className={MobileView ? "nav-links-mobile" : "nav-links"} onClick={() => setMobileView(false)}>
                 <Link to="/home"><li>Home</li></Link>
-                <Link to="#"><li>Sites</li></Link>
+                <Link to="/sites"><li>Sites</li></Link>
                 <Link to="/community"><li>Community</li></Link>
                 <Link to="/eventAll"><li>Events</li></Link>
                 <Link to="#"><li>About</li></Link>

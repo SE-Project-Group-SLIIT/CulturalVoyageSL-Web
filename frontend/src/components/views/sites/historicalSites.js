@@ -10,7 +10,8 @@ import { FaSearch } from "react-icons/fa";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
 import Button from "react-bootstrap/esm/Button";
-import NavBar from "../shared/Navbar";
+import NavBar from "../shared/NavBar";
+import FooterBar from "../shared/FooterBar";
 import './site.css';
 import { getSiteCategoryService, searchSiteService } from "../../services/siteService";
 
@@ -201,6 +202,9 @@ const HistoricalSites = () => {
               </div>
             );
           })}
+        </Row>
+        <Row>
+          <FooterBar></FooterBar>
         </Row>
       </Container>
     </div>

@@ -10,6 +10,7 @@ import NavBar from '../shared/adminNavBar'
 import { FaSearch } from "react-icons/fa";
 import { useHistory } from "react-router-dom";
 import UpdateSite from "./updateSite";
+import FooterBar from "../shared/FooterBar";
 import { deleteSiteService,searchSiteService } from "../../services/siteService";
 
 const ViewAllSites = () => {
@@ -179,7 +180,7 @@ const ViewAllSites = () => {
                 style={{ fontFamily: "sans-serif",fontWeight: "bold",
                 fontSize: "30px" }}
               >
-                <h2>List of Sites</h2>
+                <h1>List of Sites</h1>
               </div>
 
               <Row style={{marginBottom:'25px', alignContent:'center'}}>
@@ -200,7 +201,7 @@ const ViewAllSites = () => {
                   <Button
                     class="rounded-pill me-4"
                     variant="outline-warning"
-                    style={{width: 50, height: 50, position: '',top: 0,  borderTopLeftRadius: 30, borderBottomLeftRadius: 30,borderTopRightRadius: 30, borderBottomRightRadius: 30, marginRight: 600}}
+                    style={{width: 50, height: 50, position: '',top: 0,  borderTopLeftRadius: 30, borderBottomLeftRadius: 30,borderTopRightRadius: 30, borderBottomRightRadius: 30, marginRight: 400}}
                     type="submit"
                   >
                     <FaSearch style={{ width: 25, height: 25, }}/>
@@ -211,7 +212,7 @@ const ViewAllSites = () => {
                   onClick={() => {
                     history.push("/addSite");
                   }}
-                  style={{justifyContent: "flex-end",borderTopLeftRadius: 30, borderBottomLeftRadius: 30,borderTopRightRadius: 30, borderBottomRightRadius: 30}}
+                  style={{justifyContent: "flex-end",width: 150,borderTopLeftRadius: 30, borderBottomLeftRadius: 30,borderTopRightRadius: 30, borderBottomRightRadius: 30}}
                 >
                   Add New Site
                 </Button>
@@ -301,6 +302,9 @@ const ViewAllSites = () => {
             </div>
           </div>
         </div>
+        <Row style={{marginTop: 80}}>
+          <FooterBar></FooterBar>
+        </Row>
       </Row>
 
       <Modal

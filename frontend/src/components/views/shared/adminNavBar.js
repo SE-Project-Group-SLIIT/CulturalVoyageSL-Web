@@ -58,16 +58,16 @@ export default function AdminNavBar() {
 
   return (
     <Navbar bg="light" expand="lg" style={{ height: "13vh" }}>
-      <Container style={{ marginLeft: "3px", marginTop: "-2px"}}>
+      <Container style={{ marginLeft: "-100px", marginTop: "-3px", marginRight:'10px'}}>
         <Navbar.Brand>
           <Image
             src="images/logo.png"
             alt="Logo"
-            style={{ width: "300px", height: "80px", margin: "1px" }}
+            style={{ width: 400, height: 95, marginTop: "-10px" }}
           ></Image>
         </Navbar.Brand>
         {/* <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand> */}
-        <Row style={{marginLeft:'430px'}}>
+        <Row style={{marginLeft:'300px', marginRight:'0px'}}>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto" >
@@ -151,6 +151,7 @@ export default function AdminNavBar() {
 
             <NavDropdown
                 title={<FaRegUser />}
+                style={{marginTop:'25px'}}
                 id="user-dropdown"
                 className="custom-dropdown"
                 onMouseEnter={handleUserDropdownMouseEnter}

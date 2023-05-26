@@ -6,7 +6,8 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-import NavBar from "../shared/Navbar";
+import NavBar from "../shared/NavBar";
+import FooterBar from "../shared/FooterBar";
 
 const ViewSite = (props) => {
   const [siteDetails, setSiteDetails] = useState(props.history.location.state);
@@ -96,7 +97,7 @@ const ViewSite = (props) => {
             <Col>
               <hr></hr>
               <Row style={{ margin: "10px" }}>
-                <h2>{siteDetails.SiteName}</h2>
+                <h1>{siteDetails.SiteName}</h1>
                 <small>{siteDetails.Description}</small>
               </Row>
 
@@ -139,6 +140,9 @@ const ViewSite = (props) => {
                         </Col> */}
           </Row>
         </Container>
+        <Row>
+          <FooterBar></FooterBar>
+        </Row>
       </Container>
     </div>
   );
