@@ -23,6 +23,7 @@ import ViewNotifications from '../../modals/viewNotifications'
 import { getAllPostService, getPostsBySearch } from '../../services/postService';
 import FooterBar from "../shared/FooterBar"
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2'
 
 const CommunityDashboard = () => {
     const [loading,setLoading] = useState(false);
@@ -65,6 +66,14 @@ const CommunityDashboard = () => {
     //set View Notifications modal
     const openModalViewNotifications = () => {
         setModalViewNotifications(true);
+    };
+    const openEditPost = () => {
+        Swal.fire({
+            icon: "warning",
+            title: "Post request send !",
+            showConfirmButton: true,
+          });
+          window.location.reload();
     };
     const getData = async () => {
 
@@ -298,7 +307,7 @@ const CommunityDashboard = () => {
                                     <div className="card-header d-flex justify-content-left p-0">
                                         <div className='col-12 d-flex justify-content-between p-0'>
                                             <p style={{ paddingTop: 10, marginTop: 5, marginLeft: 20 }}><strong>{post.title}</strong></p>
-                                            <BiEditAlt style={{ width: 25, height: 25, marginTop: 7, marginRight: 15 }} />
+                                            <BiEditAlt style={{ width: 25, height: 25, marginTop: 7, marginRight: 15 }} onClick={() => openEditPost()} />
                                         </div>
                                     </div>
                                     <div className="card-body d-flex justify-content-left">

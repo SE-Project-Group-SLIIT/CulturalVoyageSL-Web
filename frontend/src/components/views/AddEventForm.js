@@ -11,7 +11,7 @@ import Nav from "react-bootstrap/Nav";
 import { ProgressBar } from "react-bootstrap";
 import DropzoneArea from "../../dropZoneComponents/dropZone";
 import { addEventsService } from "../services/eventService";
-import NavBar from "./shared/NavBar";
+import NavBar from "./shared/adminNavBar";
 import FooterBar from "./shared/FooterBar";
 
 const AddEventForm = () => {

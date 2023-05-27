@@ -15,7 +15,7 @@ export default function Login() {
         e.preventDefault();
 
         // validate user
-        axios.get(`http://localhost:5000/login/login/${Email}/${Password}`)
+        axios.get(`https://culturalvoyagesl-backend-plcp.onrender.com/login/login/${Email}/${Password}`)
             .then((response) => {
                 console.log(response.data);
                 setLogin(response.data.login);
@@ -39,7 +39,7 @@ export default function Login() {
                         win.setItem('Email', Email);
                         win.setItem('_id', id);
                     
-                        history.push("/profile");
+                        history.push("/home");
                         window.location.reload();
                     }
                 }

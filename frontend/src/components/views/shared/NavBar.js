@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import "./navbar.css";
 import { FaBars, FaRegUser} from 'react-icons/fa'
 import { ImCross } from 'react-icons/im'
+import {FiLogOut} from 'react-icons/fi'
 
 export default function NavBar() {
 
@@ -22,6 +23,8 @@ export default function NavBar() {
                 <Link to="/login"><li>Login</li></Link>
                 <Link to="/register"><li>Register</li></Link>
                 <Link to="/profile"><li><FaRegUser style={{marginTop:35}}/></li></Link>
+                <Link to="/login"><li><FiLogOut style={{marginTop:35}}/></li></Link>
+
             </ul>
             <button className='mobile-menu-icon' onClick={() => setMobileView(!MobileView)}>
                 {MobileView ? <ImCross /> : <FaBars />}

@@ -5,7 +5,7 @@ import { deleteEventsService,getAllEventsService } from "../services/eventServic
 import Swal from 'sweetalert2'
 import UpdateEventModal from "./updateEventModal";
 import { FaPlus } from "react-icons/fa";
-import NavBar from "./shared/NavBar";
+import NavBar from "./shared/adminNavBar";
 import FooterBar from "./shared/FooterBar";
 
 const EventsManage = () => {
