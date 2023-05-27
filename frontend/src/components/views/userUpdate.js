@@ -48,7 +48,7 @@ function UserUpdate({data}) {
 
                 const newUser = { Name, Email, MobileNumber, Password, Location, Bio }
 
-                axios.post(`http://localhost:5000/user/updateUser/${data._id}`, newUser).then(() => {
+                axios.post(`https://culturalvoyagesl-backend-plcp.onrender.com/user/updateUser/${data._id}`, newUser).then(() => {
                     //alert("Rental Record successfully Updated");
                     Swal.fire({
                         title: "Order Record successfully Updated! ",
