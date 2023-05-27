@@ -86,7 +86,7 @@ export default function AdminNavBar() {
                 Add New Site
               </NavDropdown.Item> */}
 
-              <NavDropdown.Item href="/#" className="dropdown-item">
+              <NavDropdown.Item href="/admin" className="dropdown-item">
                 User List
               </NavDropdown.Item>
               {/* <NavDropdown.Divider /> */}
@@ -120,11 +120,11 @@ export default function AdminNavBar() {
               className="custom-dropdown"
               style={{paddingRight:'50px'}}
             >
-              <NavDropdown.Item href="/#" className="dropdown-item">
+              <NavDropdown.Item href="/addEvent" className="dropdown-item">
                 Add New Event
               </NavDropdown.Item>
 
-              <NavDropdown.Item href="/#" className="dropdown-item">
+              <NavDropdown.Item href="/eventManage" className="dropdown-item">
                 Event List
               </NavDropdown.Item>
               {/* <NavDropdown.Divider /> */}
@@ -161,7 +161,7 @@ export default function AdminNavBar() {
                 <NavDropdown.Item href="/#" className="dropdown-item">
                   Profile
                 </NavDropdown.Item>
-                <NavDropdown.Item href="/#" className="dropdown-item">
+                <NavDropdown.Item href="/login" className="dropdown-item">
                   Logout
                 </NavDropdown.Item>
               </NavDropdown>
