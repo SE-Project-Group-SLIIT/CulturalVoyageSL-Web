@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useHistory, withRouter } from "react-router-dom";
 import { Modal, Button } from "react-bootstrap";
+import AdminNavBar from "./shared/adminNavBar";
 
 import UserUpdate from "./userUpdate";
 
@@ -23,7 +24,7 @@ function UserlList() {
 
       
             function getOrder() {
-                axios.get(`http://localhost:5000/user/getAllUsers`).then((res) => { //normally the fetched rental record details are displayed through this
+                axios.get(`https://culturalvoyagesl-backend-plcp.onrender.com/user/getAllUsers`).then((res) => { //normally the fetched rental record details are displayed through this
                     //setRentals(res.data.reverse());
                     setOrderList(res.data.data);
                 }).catch((error) => {
@@ -53,7 +54,7 @@ function UserlList() {
     }
 
     function deleteOrder(data) {
-        axios.delete(`http://localhost:5000/user/deleteUser`, { data, }).then(() => {
+        axios.delete(`https://culturalvoyagesl-backend-plcp.onrender.com/user/deleteUser`, { data, }).then(() => {
             alert("Data deleted");
             window.location.reload();
         }).catch((err) => {
@@ -68,7 +69,8 @@ function UserlList() {
 
 
     return (
-        
+        <>
+        <AdminNavBar />
         <div className="page-component-body">
             
             
@@ -191,6 +193,7 @@ function UserlList() {
                               
 
         </div >
+        </>
     )
 
 

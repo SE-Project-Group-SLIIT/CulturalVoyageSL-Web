@@ -27,7 +27,7 @@ export default function Profile() {
 
   const loadData = () => {
     // fetch buyer data
-    axios.get(`http://localhost:5000/user/getUser/${Email}`).then((response) => {
+    axios.get(`https://culturalvoyagesl-backend-plcp.onrender.com/user/getUser/${Email}`).then((response) => {
 
         console.log(response.data);
         console.log(response.data.data[0])

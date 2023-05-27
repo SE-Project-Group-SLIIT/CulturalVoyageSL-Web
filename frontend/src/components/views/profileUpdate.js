@@ -41,7 +41,7 @@ export default function UpdateProfile({ data }) {
             Bio,
         }
 
-        axios.post(`http://localhost:5000/user/updateUser/${data._id}`, updateProfile).then(() => {
+        axios.post(`https://culturalvoyagesl-backend-plcp.onrender.com/user/updateUser/${data._id}`, updateProfile).then(() => {
             console.log(data._id);
             alert("User Updated")
             window.location.replace("/profile");
