@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import NavBar from "./shared/NavBar";
 import { MDBBtn, MDBContainer, MDBCard, MDBCardBody, MDBCardImage, MDBRow, MDBCol, MDBInput } from 'mdb-react-ui-kit';
 
 export default function Register() {
@@ -28,7 +29,7 @@ export default function Register() {
             Bio
         };
 
-        axios.post("http://localhost:5000/user/addUser", {
+        axios.post("https://culturalvoyagesl-backend-plcp.onrender.com/user/addUser", {
           Name,
           Email,
           MobileNumber,
@@ -51,6 +52,8 @@ export default function Register() {
 
 
     return (
+      <>
+      <NavBar />
       <form onSubmit={sendData}>
         <MDBContainer fluid>
     
@@ -101,5 +104,6 @@ export default function Register() {
     
         </MDBContainer>
         </form>
+        </>
       );
     }
