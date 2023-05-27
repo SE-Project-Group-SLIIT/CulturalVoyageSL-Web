@@ -27,6 +27,8 @@ import ViewSite from "../views/sites/viewSite";
 import ViewAllSites from "../views/sites/viewAllSites";
 import AdminHome from "../views/AdminHome";
 
+import Home from "../views/Home";
+
 export const PublicRouters = () => {
     return (
         <Router>
@@ -56,6 +58,9 @@ export const PublicRouters = () => {
                 <Route path="/viewSite" exact component={ViewSite} />
                 <Route path="/viewAll" exact component={ViewAllSites} />
                 <Route path="/homeA" exact component={AdminHome} />
+
+                <Route path="/home" exact component={Home} />
+                <Route path="/" exact component={Login} />
 
             </Switch>
         </Router>

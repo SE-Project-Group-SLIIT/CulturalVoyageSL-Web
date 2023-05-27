@@ -5,6 +5,7 @@ import "../views/profile.css";
 import axios from "axios";
 import ProfileUpdate from "../views/profileUpdate";
 import { useHistory } from "react-router-dom";
+import NavBar from './shared/NavBar';
 
 export default function Profile() {
 
@@ -66,7 +67,8 @@ export default function Profile() {
   }
 
   return (
-    
+    <>
+    <NavBar />
     <section className="vh-100" style={{ backgroundColor: '#f4f5f7' }}>
       <MDBContainer className="py-5 h-100">
         <MDBRow className="justify-content-center align-items-center h-100">
@@ -134,6 +136,7 @@ export default function Profile() {
       </Modal>
 
     </section>
+    </>
 
   );
 }
