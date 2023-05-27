@@ -104,9 +104,18 @@ const CommunityDashboard = () => {
         try {
           // Call your API function to retrieve posts by search query
           const response = await getPostsBySearch(newSearch);
+          console.log(response.data.length)
           if(!response.ok){
             const responses = await getAllPostService();
             if (responses.ok) {
+                console.log("opened")
+                setPostData(responses.data);
+            }
+          }
+         if(response.data.length == 0){
+            const responses = await getAllPostService();
+            if (responses.ok) {
+                console.log("opened")
                 setPostData(responses.data);
             }
           }
@@ -435,7 +444,7 @@ const CommunityDashboard = () => {
                                             <RiFilePaper2Line size={40} style={{ marginLeft: 20, marginTop: 10 }} />
                                         </div>
                                         <div className='col  d-flex flex-column justify-content-left'>
-                                            <p style={{ marginTop: 20 }}><strong>Posts : 06</strong></p>
+                                            <p style={{ marginTop: 20 }}><strong>Posts :  0{postData.length}</strong></p>
                                         </div>
                                     </Row>
                                 </div>
