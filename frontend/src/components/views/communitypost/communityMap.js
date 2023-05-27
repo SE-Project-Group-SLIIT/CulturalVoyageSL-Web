@@ -21,6 +21,7 @@ import {
 } from '@react-google-maps/api'
 import { useRef, useState } from 'react'
 import { Row } from 'react-bootstrap'
+import FooterBar from '../shared/FooterBar';
 
 const center = { lat: 48.8584, lng: 2.2945 }
 
@@ -207,6 +208,7 @@ function CommunityMap() {
                 </div>
                 <div class="col-4"></div>
             </div>
+            <FooterBar />
         </>
     )
 }
